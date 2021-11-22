@@ -1,6 +1,11 @@
 body {
-  margin: 0;
+  background: #101010;
   font-family: -apple-system, BlinkMacSystemFont, "Inter", "Ubuntu", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 0 !important;
 }

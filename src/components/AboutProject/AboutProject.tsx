@@ -1,13 +1,10 @@
+import AboutMe from "../AboutMe/AboutMe";
 import "./AboutProject.css";
 
 function AboutProject() {
   return (
     <>
-      <div className="App">AboutProject</div>
-      <div className="App">AboutProject</div>
-      <div className="App">AboutProject</div>
-      <div className="App">AboutProject</div>
-      <div className="App">AboutProject</div>
+      <AboutMe />
     </>
   );
 }
