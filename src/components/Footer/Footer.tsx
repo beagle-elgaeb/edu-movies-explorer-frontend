@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 import "./Footer.css";
 
 function Footer() {
@@ -6,7 +6,7 @@ function Footer() {
     <FooterContainer>
       <Title>Учебный проект Яндекс.Практикум х BeatFilm.</Title>
       <LinksAndYear>
-        <Year>© 2020</Year>
+        <Year>© 2021</Year>
         <Links>
           <Link>Яндекс.Практикум</Link>
           <Link>Github</Link>
@@ -20,14 +20,18 @@ function Footer() {
 export default Footer;
 
 const FooterContainer = styled.div`
+  height: 93px;
   width: 100%;
-  background: #202020;
-  margin: 0;
-  padding: 0 0 20px;
+  box-sizing: border-box;
+  padding: 0 5.5%;
+
+  @media (max-width: 700px) {
+    padding: 0 4%;
+  }
 
   @media (max-width: 400px) {
-    position: relative;
-    padding: 0 0 55px;
+    height: 191px;
+    padding: 0 3%;
   }
 `;
 
@@ -38,7 +42,7 @@ const Title = styled.h5`
   font-weight: 400;
   text-align: center;
   color: #8b8b8b;
-  margin: 79px auto 20px;
+  margin: 0 auto 20px;
 
   @media (max-width: 400px) {
     font-size: 12px;
@@ -47,15 +51,18 @@ const Title = styled.h5`
 `;
 
 const LinksAndYear = styled.div`
+  height: 56px;
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-top: 1px solid #424242;
-  margin: 0;
-  padding: 20px 0 0;
 
   @media (max-width: 400px) {
+    height: 154px;
     flex-direction: column;
+    position: relative;
     padding: 18px 0 0;
   }
 `;

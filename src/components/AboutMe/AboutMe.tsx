@@ -36,9 +36,16 @@ export default AboutMe;
 
 const AboutMeContainer = styled.div`
   width: 100%;
-  background: #202020;
-  margin: 0 auto;
-  padding: 0 0 20px;
+  box-sizing: border-box;
+  padding: 0 5.5%;
+
+  @media (max-width: 700px) {
+    padding: 0 4%;
+  }
+
+  @media (max-width: 400px) {
+    padding: 0 3%;
+  }
 `;
 
 const Title = styled.h2`
@@ -49,7 +56,7 @@ const Title = styled.h2`
   color: #ffffff;
   margin: 110px 0 23px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
     margin: 90px 0 23px;
   }
 
@@ -95,7 +102,7 @@ const Name = styled.h1`
   color: #ffffff;
   margin: 0 0 18px 0;
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
     font-size: 40px;
     line-height: 48px;
     margin: 0 0 16px 0;
@@ -115,7 +122,7 @@ const Description = styled.p`
   color: #ffffff;
   margin: 0 0 26px 0;
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
     font-size: 12px;
     line-height: 18px;
     margin: 0 0 20px 0;
@@ -133,7 +140,7 @@ const Text = styled.p`
   font-weight: 400;
   color: #ffffff;
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
     font-size: 12px;
     line-height: 18px;
   }
