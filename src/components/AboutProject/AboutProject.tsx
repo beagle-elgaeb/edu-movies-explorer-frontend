@@ -1,6 +1,3 @@
-import AboutMe from "../AboutMe/AboutMe";
-import Portfolio from "../Portfolio/Portfolio";
-import Techs from "../Techs/Techs";
 import {
   AboutProjectContainer,
   End,
@@ -40,9 +37,6 @@ function AboutProject() {
           <End>Front-end</End>
         </Infographics>
       </AboutProjectContainer>
-      <Techs />
-      <AboutMe />
-      <Portfolio />
     </>
   );
 }

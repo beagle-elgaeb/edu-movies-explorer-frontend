@@ -7,7 +7,7 @@ export const TechsContainer = styled.div`
   background: #272727;
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   ${TitleBlock}
 `;
 
@@ -23,7 +23,7 @@ export const Technologies = styled.div`
   }
 `;
 
-export const HowMany = styled.h2`
+export const HowMany = styled.h4`
   font-size: 50px;
   line-height: 58px;
   font-weight: 400;

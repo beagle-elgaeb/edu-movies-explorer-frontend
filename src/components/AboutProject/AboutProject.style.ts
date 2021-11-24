@@ -9,7 +9,7 @@ export const AboutProjectContainer = styled.div`
   ${ContainerPaddings}
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   ${TitleBlock}
 `;
 

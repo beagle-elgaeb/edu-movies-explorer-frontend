@@ -17,7 +17,7 @@ export const PortfolioContainer = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   font-size: 18px;
   line-height: 20px;
   font-weight: 400;

@@ -2,7 +2,7 @@ import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
 import { ContainerPaddings } from "../components.style";
 
-export const HeaderContainer = styled.div<{ authorized: boolean }>`
+export const HeaderContainer = styled.header<{ authorized: boolean }>`
   ${ContainerPaddings}
   height: 74px;
   display: flex;
@@ -11,6 +11,16 @@ export const HeaderContainer = styled.div<{ authorized: boolean }>`
   background: ${({ authorized }) => (authorized ? "transparent" : "#073042")};
   padding-top: 0;
   padding-bottom: 0;
+
+  @media (max-width: 800px) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  @media (max-width: 500px) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 `;
 
 export const Logo = styled(Link)`
