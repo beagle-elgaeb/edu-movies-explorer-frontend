@@ -1,46 +1,21 @@
 import styled from "@emotion/styled/macro";
 import photoMe from "../../images/photo-me.jpeg";
+import {
+  ContainerPaddings,
+  InformationBlock,
+  TitleBlock,
+} from "../components.style";
 
 export const AboutMeContainer = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0 0 100px;
-  padding: 0 5.5%;
-
-  @media (max-width: 800px) {
-    margin: 0 0 90px;
-    padding: 0 4%;
-  }
-
-  @media (max-width: 500px) {
-    margin: 0 0 70px;
-    padding: 0 3%;
-  }
+  ${ContainerPaddings}
 `;
 
 export const Title = styled.h2`
-  font-size: 22px;
-  line-height: 27px;
-  font-weight: 400;
-  color: #ffffff;
-  margin: 110px 0 23px 0;
-
-  @media (max-width: 800px) {
-    margin: 90px 0 23px 0;
-  }
-
-  @media (max-width: 500px) {
-    font-size: 18px;
-    line-height: 22px;
-    margin: 70px 0 28px 0;
-  }
+  ${TitleBlock}
 `;
 
 export const AboutAndPhoto = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #dadada;
-  padding: 66px 0 0 0;
+  ${InformationBlock}
 `;
 
 export const About = styled.div`

@@ -1,17 +1,11 @@
 import styled from "@emotion/styled/macro";
+import { ContainerPaddings } from "../components.style";
 
 export const FooterContainer = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 5.5%;
+  ${ContainerPaddings}
 
-  @media (max-width: 800px) {
-    padding: 0 4%;
-  }
-
-  @media (max-width: 500px) {
-    padding: 0 3%;
-  }
+  padding-top: 79px;
+  padding-bottom: 0;
 `;
 
 export const Title = styled.h5`

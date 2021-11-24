@@ -1,20 +1,19 @@
 import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
+import { ContainerPaddings } from "../components.style";
 
 export const PortfolioContainer = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0 0 184px;
-  padding: 0 5.5%;
+  ${ContainerPaddings}
+
+  padding-top: 0;
+  padding-bottom: 125px;
 
   @media (max-width: 800px) {
-    margin: 0 0 149px;
-    padding: 0 4%;
+    padding-top: 0;
   }
 
   @media (max-width: 500px) {
-    margin: 0 0 130px;
-    padding: 0 3%;
+    padding-top: 0;
   }
 `;
 
