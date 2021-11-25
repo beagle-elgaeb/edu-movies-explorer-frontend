@@ -13,17 +13,19 @@ import "./App.css";
 function App() {
   return (
     <Body>
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/saved-movies" element={<SavedMovies />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-        </Routes>
-      </main>
+      <div>
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/saved-movies" element={<SavedMovies />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/signin" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
+          </Routes>
+        </main>
+      </div>
       <Footer />
     </Body>
   );
@@ -32,7 +34,11 @@ function App() {
 export default App;
 
 const Body = styled.div`
+  min-height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   max-width: 1280px;
   min-width: 320px;
   background: #202020;
