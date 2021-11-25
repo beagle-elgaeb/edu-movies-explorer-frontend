@@ -1,7 +1,13 @@
-import styled from "@emotion/styled/macro";
 import { useState } from "react";
 import ProfileInput from "../ProfileInput/ProfileInput";
-import { Greeting, Inputs, ProfileContainer } from "./Profile.style";
+import {
+  Buttons,
+  Edit,
+  Exit,
+  Greeting,
+  Inputs,
+  ProfileContainer,
+} from "./Profile.style";
 
 function Profile() {
   const [name, setName] = useState("Евгения");
@@ -41,34 +47,3 @@ function Profile() {
 }
 
 export default Profile;
-
-export const Buttons = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 13px;
-  line-height: 16px;
-
-  @media (max-width: 500px) {
-    font-size: 12px;
-    line-height: 15px;
-    margin: 0;
-  }
-`;
-
-export const Edit = styled.button`
-  background: transparent;
-  border: none;
-  outline: none;
-  font-weight: 400;
-  color: #ffffff;
-  margin: 0 0 16px;
-`;
-
-export const Exit = styled.button`
-  background: transparent;
-  border: none;
-  outline: none;
-  font-weight: 500;
-  color: #ee3465;
-`;
