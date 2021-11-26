@@ -87,6 +87,7 @@ export const Link = styled.a`
   line-height: 16px;
   font-weight: 400;
   text-align: center;
+  text-decoration: none;
   color: #ffffff;
   margin: 0 0 0 20px;
 

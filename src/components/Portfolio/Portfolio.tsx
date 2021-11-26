@@ -2,7 +2,7 @@ import {
   Title,
   EduWorkLink,
   PortfolioContainer,
-  LinkItem,
+  Link,
 } from "./Portfolio.style";
 
 function Portfolio() {
@@ -10,16 +10,46 @@ function Portfolio() {
     <PortfolioContainer>
       <Title>Портфолио</Title>
       <EduWorkLink>
-        <LinkItem to="">Статичный сайт</LinkItem>
-        <LinkItem to="">&#129125;</LinkItem>
+        <Link
+          href="https://beagle-elgaeb.github.io/edu-how-to-learn/index.html"
+          alt-text="Научиться учиться"
+        >
+          Статичный сайт
+        </Link>
+        <Link
+          href="https://beagle-elgaeb.github.io/edu-how-to-learn/index.html"
+          alt-text="Научиться учиться"
+        >
+          &#129125;
+        </Link>
       </EduWorkLink>
       <EduWorkLink>
-        <LinkItem to="">Адаптивный сайт</LinkItem>
-        <LinkItem to="">&#129125;</LinkItem>
+        <Link
+          href="https://beagle-elgaeb.github.io/edu-russian-travel/index.html"
+          alt-text="Путешествия по России"
+        >
+          Адаптивный сайт
+        </Link>
+        <Link
+          href="https://beagle-elgaeb.github.io/edu-russian-travel/index.html"
+          alt-text="Путешествия по России"
+        >
+          &#129125;
+        </Link>
       </EduWorkLink>
       <EduWorkLink>
-        <LinkItem to="">Одностраничное приложение</LinkItem>
-        <LinkItem to="">&#129125;</LinkItem>
+        <Link
+          href="https://beagle-elgaeb.nomoredomains.rocks/"
+          alt-text="Место"
+        >
+          Одностраничное приложение
+        </Link>
+        <Link
+          href="https://beagle-elgaeb.nomoredomains.rocks/"
+          alt-text="Место"
+        >
+          &#129125;
+        </Link>
       </EduWorkLink>
     </PortfolioContainer>
   );

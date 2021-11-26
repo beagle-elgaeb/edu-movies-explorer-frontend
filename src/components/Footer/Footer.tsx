@@ -15,9 +15,24 @@ function Footer() {
       <LinksAndYear>
         <YearBefore>© 2021</YearBefore>
         <Links>
-          <Link>Яндекс.Практикум</Link>
-          <Link>Github</Link>
-          <Link>Facebook</Link>
+          <Link
+            href="https://practicum.yandex.ru/profile/web/"
+            alt-text="Яндекс.Практикум"
+          >
+            Яндекс.Практикум
+          </Link>
+          <Link
+            href="https://github.com/beagle-elgaeb"
+            alt-text="Моя страница на GitHub"
+          >
+            Github
+          </Link>
+          <Link
+            href="https://www.instagram.com/evg._.su/"
+            alt-text="Я на Instagram"
+          >
+            Instagram
+          </Link>
           <YearAfter>© 2021</YearAfter>
         </Links>
       </LinksAndYear>

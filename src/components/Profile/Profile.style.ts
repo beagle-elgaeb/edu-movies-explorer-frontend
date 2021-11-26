@@ -1,6 +1,6 @@
 import styled from "@emotion/styled/macro";
 
-export const ProfileContainer = styled.div`
+export const ProfileContainer = styled.form`
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -38,6 +38,7 @@ export const Greeting = styled.h3`
 `;
 
 export const Inputs = styled.div`
+  width: 100vw;
   margin: 0 0 205px;
 
   @media (max-width: 800px) {

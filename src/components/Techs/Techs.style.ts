@@ -1,7 +1,6 @@
 import styled from "@emotion/styled/macro";
 import { ContainerPaddings, TitleBlock } from "../components.style";
 
-
 export const TechsContainer = styled.div`
   ${ContainerPaddings}
   background: #272727;
@@ -64,7 +63,7 @@ export const Text = styled.p`
   }
 `;
 
-export const TechnologiesItem = styled.div`
+export const TechnologiesItems = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 90px);
   grid-template-rows: 60px;
@@ -86,7 +85,7 @@ export const TechnologiesItem = styled.div`
   }
 `;
 
-export const Technology = styled.div`
+export const Technology = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,6 +94,7 @@ export const Technology = styled.div`
   font-size: 14px;
   line-height: 17px;
   font-weight: 400;
+  text-decoration: none;
   color: #ffffff;
 
   @media (max-width: 800px) {

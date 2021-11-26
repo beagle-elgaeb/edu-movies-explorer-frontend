@@ -31,8 +31,18 @@ function AboutMe() {
             </Text>
           </div>
           <Social>
-            <Link>GitHub</Link>
-            <Link>Instagram</Link>
+            <Link
+              href="https://github.com/beagle-elgaeb"
+              alt-text="Моя страница на GitHub"
+            >
+              GitHub
+            </Link>
+            <Link
+              href="https://www.instagram.com/evg._.su/"
+              alt-text="Я на Instagram"
+            >
+              Instagram
+            </Link>
           </Social>
         </About>
         <PhotoAfter></PhotoAfter>

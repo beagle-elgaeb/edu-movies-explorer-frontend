@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProfileInput from "../ProfileInput/ProfileInput";
+import InputProfile from "../InputProfile/InputProfile";
 import {
   Buttons,
   Edit,
@@ -26,13 +26,15 @@ function Profile() {
       <div>
         <Greeting>Привет, Евгения!</Greeting>
         <Inputs>
-          <ProfileInput
+          <InputProfile
             label="Имя"
+            type="text"
             value={name}
             handleChange={handleChangeName}
           />
-          <ProfileInput
+          <InputProfile
             label="E-mail"
+            type="email"
             value={email}
             handleChange={handleChangeEmail}
           />

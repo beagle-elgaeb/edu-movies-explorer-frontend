@@ -1,5 +1,4 @@
 import styled from "@emotion/styled/macro";
-import { Link } from "react-router-dom";
 import { ContainerPaddings } from "../components.style";
 
 export const PortfolioContainer = styled.div`
@@ -46,7 +45,7 @@ export const EduWorkLink = styled.div`
   }
 `;
 
-export const LinkItem = styled(Link)`
+export const Link = styled.a`
   font-size: 30px;
   line-height: 50px;
   font-weight: 400;

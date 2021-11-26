@@ -2,10 +2,13 @@ import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
 import { ContainerPaddings } from "../components.style";
 
-export const HeaderContainer = styled.header<{ authorized: boolean }>`
+export const HeaderContainer = styled.header<{
+  authorized: boolean;
+  visible: boolean;
+}>`
   ${ContainerPaddings}
   height: 74px;
-  display: flex;
+  display: ${({ visible }) => (visible ? "flex" : "none")};
   justify-content: space-between;
   align-items: center;
   background: ${({ authorized }) => (authorized ? "transparent" : "#073042")};
