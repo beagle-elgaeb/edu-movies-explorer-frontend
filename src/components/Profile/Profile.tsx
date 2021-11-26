@@ -1,11 +1,13 @@
 import { useState } from "react";
-import InputProfile from "../InputProfile/InputProfile";
 import {
   Buttons,
   Edit,
   Exit,
   Greeting,
+  Input,
+  InputContainer,
   Inputs,
+  Label,
   ProfileContainer,
 } from "./Profile.style";
 
@@ -26,18 +28,14 @@ function Profile() {
       <div>
         <Greeting>Привет, Евгения!</Greeting>
         <Inputs>
-          <InputProfile
-            label="Имя"
-            type="text"
-            value={name}
-            handleChange={handleChangeName}
-          />
-          <InputProfile
-            label="E-mail"
-            type="email"
-            value={email}
-            handleChange={handleChangeEmail}
-          />
+          <InputContainer>
+            <Label>Имя</Label>
+            <Input value={name} type="text" onChange={handleChangeName} />
+          </InputContainer>
+          <InputContainer>
+            <Label>E-mail</Label>
+            <Input value={email} type="email" onChange={handleChangeEmail} />
+          </InputContainer>
         </Inputs>
       </div>
       <Buttons>

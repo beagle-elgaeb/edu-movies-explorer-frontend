@@ -16,7 +16,7 @@ function Footer() {
         <YearBefore>© 2021</YearBefore>
         <Links>
           <Link
-            href="https://practicum.yandex.ru/profile/web/"
+            href="https://practicum.yandex.ru/web/"
             alt-text="Яндекс.Практикум"
           >
             Яндекс.Практикум

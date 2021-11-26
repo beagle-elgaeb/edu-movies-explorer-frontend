@@ -6,7 +6,8 @@ import {
   PromoBlock,
   PromoContainer,
   Text,
-  Title,
+  TitleMax,
+  TitleMin,
 } from "./Promo.style";
 
 function Promo() {
@@ -14,11 +15,21 @@ function Promo() {
     <PromoContainer>
       <PromoBlock>
         <GlobeBefore src={globe}></GlobeBefore>
-        <Title>Учебный проект студента факультета Веб&#8209;разработки.</Title>
+        <TitleMax>
+          Учебный проект студента факультета Веб&#8209;разработки.
+        </TitleMax>
+        <TitleMin>
+          Учебный проект студента&#160;факультета Веб&#8209;разработки.
+        </TitleMin>
         <Text>
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </Text>
-        <LearnMore>Узнать больше</LearnMore>
+        <LearnMore
+          href="https://practicum.yandex.ru/web/"
+          alt-text="Яндекс.Практикум"
+        >
+          Узнать больше
+        </LearnMore>
       </PromoBlock>
       <GlobeAfter src={globe}></GlobeAfter>
     </PromoContainer>

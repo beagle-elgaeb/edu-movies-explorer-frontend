@@ -26,7 +26,7 @@ export const PromoBlock = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const TitleMax = styled.h2`
   max-width: 640px;
   font-size: 50px;
   line-height: 58px;
@@ -44,6 +44,15 @@ export const Title = styled.h2`
   }
 
   @media (max-width: 500px) {
+    display: none;
+  }
+`;
+
+export const TitleMin = styled(TitleMax)`
+  display: none;
+
+  @media (max-width: 500px) {
+    display: inline;
     font-size: 30px;
     line-height: 38px;
     margin: 0 auto 24px;
@@ -69,16 +78,19 @@ export const Text = styled.p`
   }
 `;
 
-export const LearnMore = styled.button`
+export const LearnMore = styled.a`
   height: 36px;
   width: 129px;
   box-sizing: border-box;
-  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid #ffffff60;
   border-radius: 3px;
   font-size: 12px;
   line-height: 16px;
   font-weight: 500;
+  text-decoration: none;
   color: #ffffff;
 `;
 

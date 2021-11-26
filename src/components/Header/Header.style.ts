@@ -1,12 +1,12 @@
 import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
-import { ContainerPaddings } from "../components.style";
+import { PaddingsPattern } from "../Blocks.style";
 
 export const HeaderContainer = styled.header<{
   authorized: boolean;
   visible: boolean;
 }>`
-  ${ContainerPaddings}
+  ${PaddingsPattern}
   height: 74px;
   display: ${({ visible }) => (visible ? "flex" : "none")};
   justify-content: space-between;

@@ -1,20 +1,20 @@
 import styled from "@emotion/styled/macro";
 import {
-  ContainerPaddings,
-  InformationBlock,
-  TitleBlock,
-} from "../components.style";
+  PaddingsPattern,
+  InformationPattern,
+  TitlePattern,
+} from "../Blocks.style";
 
 export const AboutProjectContainer = styled.div`
-  ${ContainerPaddings}
+  ${PaddingsPattern}
 `;
 
 export const Title = styled.h3`
-  ${TitleBlock}
+  ${TitlePattern}
 `;
 
 export const Information = styled.div`
-  ${InformationBlock}
+  ${InformationPattern}
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;

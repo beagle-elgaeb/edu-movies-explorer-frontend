@@ -5,7 +5,7 @@ import {
   Button,
   ButtonAndText,
   Inputs,
-  LinkLogin,
+  LinkRegister,
   LoginContainer,
   Text,
   Title,
@@ -44,10 +44,10 @@ function Login() {
         </Inputs>
       </div>
       <ButtonAndText>
-        <Button>Зарегистрироваться</Button>
+        <Button>Войти</Button>
         <Text>
           Ещё не зарегистрированы?
-          <LinkLogin to="/signup">Регистрация</LinkLogin>
+          <LinkRegister to="/signup">Регистрация</LinkRegister>
         </Text>
       </ButtonAndText>
     </LoginContainer>

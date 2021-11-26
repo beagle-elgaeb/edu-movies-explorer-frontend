@@ -1,14 +1,14 @@
-import "./MoviesCardList.css";
+import { Movie } from "../../utils/types";
+import MoviesCard from "../MoviesCard/MoviesCard";
+import { MoviesListContainer } from "./MoviesCardList.style";
 
-function MoviesCardList() {
+function MoviesCardList({ movies }: { movies: Movie[] }) {
   return (
-    <>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-    </>
+    <MoviesListContainer>
+      {movies.map((movie, i) => (
+        <MoviesCard key={i} movie={movie} />
+      ))}
+    </MoviesListContainer>
   );
 }
 

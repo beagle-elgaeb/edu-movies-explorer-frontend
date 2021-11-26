@@ -1,8 +1,8 @@
 import styled from "@emotion/styled/macro";
-import { ContainerPaddings } from "../components.style";
+import { PaddingsPattern } from "../Blocks.style";
 
 export const FooterContainer = styled.footer`
-  ${ContainerPaddings}
+  ${PaddingsPattern}
 
   padding-top: 79px;
   padding-bottom: 0;

@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const ContainerPaddings = css`
+export const PaddingsPattern = css`
   width: 100%;
   box-sizing: border-box;
   padding: 100px 5.5%;
@@ -14,7 +14,7 @@ export const ContainerPaddings = css`
   }
 `;
 
-export const TitleBlock = css`
+export const TitlePattern = css`
   font-size: 22px;
   line-height: 27px;
   font-weight: 400;
@@ -32,7 +32,7 @@ export const TitleBlock = css`
   }
 `;
 
-export const InformationBlock = css`
+export const InformationPattern = css`
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #dadada;

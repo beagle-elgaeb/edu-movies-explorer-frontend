@@ -1,21 +1,21 @@
 import styled from "@emotion/styled/macro";
 import photoMe from "../../images/photo-me.jpeg";
 import {
-  ContainerPaddings,
-  InformationBlock,
-  TitleBlock,
-} from "../components.style";
+  PaddingsPattern,
+  InformationPattern,
+  TitlePattern,
+} from "../Blocks.style";
 
 export const AboutMeContainer = styled.div`
-  ${ContainerPaddings}
+  ${PaddingsPattern}
 `;
 
 export const Title = styled.h3`
-  ${TitleBlock}
+  ${TitlePattern}
 `;
 
 export const AboutAndPhoto = styled.div`
-  ${InformationBlock}
+  ${InformationPattern}
 `;
 
 export const About = styled.div`

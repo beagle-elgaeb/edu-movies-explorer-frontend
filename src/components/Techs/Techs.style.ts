@@ -1,13 +1,13 @@
 import styled from "@emotion/styled/macro";
-import { ContainerPaddings, TitleBlock } from "../components.style";
+import { PaddingsPattern, TitlePattern } from "../Blocks.style";
 
 export const TechsContainer = styled.div`
-  ${ContainerPaddings}
+  ${PaddingsPattern}
   background: #272727;
 `;
 
 export const Title = styled.h3`
-  ${TitleBlock}
+  ${TitlePattern}
 `;
 
 export const Technologies = styled.div`

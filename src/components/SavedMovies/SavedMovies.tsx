@@ -1,13 +1,11 @@
+import { savedMovies } from "../../utils/lists";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 
 function SavedMovies() {
   return (
     <>
-      <div className="App">SavedMovies</div>
-      <div className="App">SavedMovies</div>
-      <div className="App">SavedMovies</div>
-      <div className="App">SavedMovies</div>
-      <div className="App">SavedMovies</div>
+      <MoviesCardList movies={savedMovies} />
     </>
   );
 }

@@ -1,8 +1,8 @@
 import styled from "@emotion/styled/macro";
-import { ContainerPaddings } from "../components.style";
+import { PaddingsPattern } from "../Blocks.style";
 
 export const PortfolioContainer = styled.div`
-  ${ContainerPaddings}
+  ${PaddingsPattern}
 
   padding-top: 0;
   padding-bottom: 125px;

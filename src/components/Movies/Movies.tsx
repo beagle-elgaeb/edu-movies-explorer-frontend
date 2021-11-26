@@ -1,13 +1,10 @@
-import "./Movies.css";
+import { movies } from "../../utils/lists";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies() {
   return (
     <>
-      <div className="App">Movies</div>
-      <div className="App">Movies</div>
-      <div className="App">Movies</div>
-      <div className="App">Movies</div>
-      <div className="App">Movies</div>
+      <MoviesCardList movies={movies} />
     </>
   );
 }
