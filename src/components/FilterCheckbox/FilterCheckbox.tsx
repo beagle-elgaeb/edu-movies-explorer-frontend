@@ -1,14 +1,11 @@
-import "./FilterCheckbox.css";
+import { Check, CheckContainer, CheckInput } from "./FilterCheckbox.style";
 
 function FilterCheckbox() {
   return (
-    <>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-    </>
+    <CheckContainer>
+      <CheckInput type="checkbox"></CheckInput>
+      <Check>Короткометражки</Check>
+    </CheckContainer>
   );
 }
 

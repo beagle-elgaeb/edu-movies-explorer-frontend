@@ -1,9 +1,7 @@
 import { useState } from "react";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import {
   Button,
-  Check,
-  CheckInput,
-  CheckLabel,
   Input,
   InputContainer,
   SearchFormContainer,
@@ -27,11 +25,7 @@ function SearchForm() {
         />
         <Button>&#8250;</Button>
       </InputContainer>
-
-      <CheckLabel>
-        <CheckInput type="checkbox"></CheckInput>
-        <Check>Короткометражки</Check>
-      </CheckLabel>
+      <FilterCheckbox />
     </SearchFormContainer>
   );
 }
