@@ -4,18 +4,23 @@ import {
   FrameFromMovie,
   MoviesCardContainer,
   NameMovie,
-  NameMovieAndRadio,
-  Radio,
+  NameMovieAndCheck,
+  CheckLabel,
+  CheckInput,
+  Check,
 } from "./MoviesCard.style";
 
 function MoviesCard({ movie }: { movie: Movie }) {
   return (
     <MoviesCardContainer>
       <FrameFromMovie frame={movie.frame}></FrameFromMovie>
-      <NameMovieAndRadio>
+      <NameMovieAndCheck>
         <NameMovie>{movie.name}</NameMovie>
-        <Radio></Radio>
-      </NameMovieAndRadio>
+        <CheckLabel>
+          <CheckInput type="checkbox" checked={movie.saved}></CheckInput>
+          <Check></Check>
+        </CheckLabel>
+      </NameMovieAndCheck>
       <DurationMovie>{movie.duration}</DurationMovie>
     </MoviesCardContainer>
   );

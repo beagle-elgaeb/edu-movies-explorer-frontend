@@ -94,7 +94,6 @@ export const Input = styled.input`
   padding: 0;
 `;
 
-
 export const Buttons = styled.div`
   display: flex;
   flex-direction: column;

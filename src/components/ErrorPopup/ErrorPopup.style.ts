@@ -1,24 +1,26 @@
 import styled from "@emotion/styled/macro";
 
 export const ErrorPopupOverlay = styled.div`
-  height: calc(100vh - 306px);
-  width: 100vw;
+  height: 100vh;
+  width: 100%;
   position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: #202020;
-  padding: 246px 0 60px;
+  z-index: 10;
+`;
+
+export const ErrorCodeAndText = styled.div`
+  margin: 246px 0 0;
 
   @media (max-width: 800px) {
-    height: calc(100vh - 630px);
-    padding: 408px 0 222px;
+    margin: 408px 0 0;
   }
 
   @media (max-width: 500px) {
-    height: calc(100vh - 359px);
-    padding: 329px 0 30px;
+    margin: 329px 0 0;
   }
 `;
 
@@ -59,10 +61,15 @@ export const Back = styled.button`
   line-height: 17px;
   font-weight: 400;
   color: #4285f4;
-  margin: 0;
+  margin: 0 0 60px;
+
+  @media (max-width: 800px) {
+    margin: 0 0 222px;
+  }
 
   @media (max-width: 500px) {
     font-size: 12px;
     line-height: 15px;
+    margin: 0 0 30px;
   }
 `;
