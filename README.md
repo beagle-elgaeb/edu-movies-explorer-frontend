@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Доплом (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Дипломная работа Никоновой Евгении для Яндекс.Практикум
 
-## Available Scripts
+<p>
+  <a href="https://developer.mozilla.org/ru/docs/Web/CSS"><img src="readme/icon-css3.svg" alt="CSS3"></a>
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://developer.mozilla.org/ru/docs/Glossary/HTML5"><img src="readme/icon-html5.svg" alt="HTML5"></a>
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript"><img src="readme/icon-js.svg" alt="JS"></a>
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://www.typescriptlang.org/"><img src="readme/icon-ts.svg" alt="TS"></a>
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://npmjs.com/"><img src="readme/icon-npm.svg" alt="NPM"></a>
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://webpack.js.org/"><img src="readme/icon-webpack.svg" alt="WebPack"></a>
+    <!-- <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://ru.wikipedia.org/wiki/REST"><img src="readme/icon-api.svg" alt="REST API"></a> -->
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://ru.reactjs.org/"><img src="readme/icon-react.svg" alt="React"></a>
+    <!-- <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://formik.org/"><img src="readme/icon-formik.svg" alt="Formik"></a> -->
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://emotion.sh/docs/introduction"><img src="readme/icon-emotion.svg" alt="Emotion"></a>
+</p>
 
-In the project directory, you can run:
+### Описание
 
-### `yarn start`
+- на данный момент выполнена вёрстка без функциональности;
+- приложения, отображаюшее информацию о понравившихся пользователю фильмах;
+- [бэкенд](https://github.com/beagle-elgaeb/edu-movies-explorer-api);
+- домен для фронтенда: `eugenes.romey.ru`.
+- домен для бэкенда: [api.eugenes.romey.ru](https://api.eugenes.romey.ru).
+- публичный IP: `51.250.4.102`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Функциональность проекта
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```diff
++ состояние `Header'а`меняется при нажатии`Enter`;
++ чтобы скрыть `Header` необходимо нажать `Ctrl + X`;
++ для демонстрации прелоадера необходимо нажать кнопку поиска на странице с фильмами (кнопка на 3 секунды меняется на прелоадер, а фильмы скрываются);
+```
+- используется css-in-js библиотека _[Emotion](https://emotion.sh/docs/introduction)_;
+- страница адаптируется с контрольными точками: 320px, 500px, 800px, 1280px.
 
-### `yarn test`
+<!-- - фронтенд загружает с сервера профиль пользователя и фотографии; -->
+<!-- - имеется возможность редактировать профиль, добавлять, удалять и оценивать лайками фотографии; -->
+<!-- - ревлизована лайф-валидация с _[Formik](https://formik.org/)_ и _[Yup](https://github.com/jquense/yup)_; -->
+<!-- - проработан UX (при отправке данных на сервер меняется состояние кнопки / появляются loader'ы); -->
+<!-- - [страница задеплоена](https://beagle-elgaeb.nomoredomains.rocks); -->
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Задачи учебного проекта
 
-### `yarn build`
+- демонстрация полученных навыков;
+- демонстрация способности самостоятельно находить ответы на свои вопросы в сторонних источниках.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Планы на дальнейшую реализацию проекта
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- добавить функциональность.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Как использовать
 
-### `yarn eject`
+Сборка фронтенда:  
+`npm run build`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Локальный запуск фронтенда:  
+`npm run start`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Связаться со мной
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<p>
+  <a href="https://t.me/evgevgevge"><img src="readme/icon-tg.svg" alt="Telegram"></a>
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="mailto:beagle-elgaeb@ya.ru"><img src="readme/icon-mail.svg" alt="Mail"></a>
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://www.instagram.com/evg._.su/"><img src="readme/icon-inst.svg" alt="Instagram"></a>
+</p>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Учебная информация
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+_Дата сдачи дипломной работы этап 2: \_\_.12.2021_

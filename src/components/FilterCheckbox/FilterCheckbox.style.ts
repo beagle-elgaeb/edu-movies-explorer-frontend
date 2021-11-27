@@ -18,7 +18,7 @@ export const CheckInput = styled.input`
 
     @media (max-width: 800px) {
       left: auto;
-      right: 18px;
+      right: 2px;
     }
   }
 `;
@@ -79,7 +79,7 @@ export const Check = styled.div`
 
     @media (max-width: 800px) {
       left: auto;
-      right: 2px;
+      right: 18px;
     }
   }
 `;
