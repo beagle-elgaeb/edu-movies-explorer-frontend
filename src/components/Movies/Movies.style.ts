@@ -1,5 +1,5 @@
 import styled from "@emotion/styled/macro";
-import { PaddingsPattern } from "../Blocks.style";
+import { HoverButton, PaddingsPattern } from "../Blocks.style";
 
 export const MoviesContainer = styled.div`
   ${PaddingsPattern}
@@ -28,12 +28,9 @@ export const More = styled.button`
   line-height: 15px;
   font-weight: 500;
   color: #ffffff;
-  cursor: pointer;
   margin: 0 auto;
 
-  :hover {
-    box-shadow: 0 2px 8px 1px #ffffff15;
-  }
+  ${HoverButton}
 
   @media (max-width: 500px) {
     width: 240px;

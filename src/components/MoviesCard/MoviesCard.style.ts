@@ -77,7 +77,9 @@ export const Check = styled.div`
   margin: 0;
 
   :hover {
-    box-shadow: 0 0 3px 1px #ffffff;
+    ::before {
+      box-shadow: 0 0 3px 1px #ffffff;
+    }
   }
 
   ::before {

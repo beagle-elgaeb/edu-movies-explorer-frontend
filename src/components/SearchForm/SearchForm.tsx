@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import Preloader from "../Preloader/Preloader";
 import {
   Button,
   Input,
@@ -7,7 +8,12 @@ import {
   SearchFormContainer,
 } from "./SearchForm.style";
 
-function SearchForm() {
+type Props = {
+  search?: boolean;
+  handleSearch?: () => void;
+};
+
+function SearchForm({ search, handleSearch }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
 
   function handleChangeSearchQuery(evt: React.FormEvent<HTMLInputElement>) {
@@ -23,7 +29,13 @@ function SearchForm() {
           placeholder="Фильм"
           onChange={handleChangeSearchQuery}
         />
-        <Button>&#8250;</Button>
+        {search ? (
+          <Preloader />
+        ) : (
+          <Button type="button" onClick={handleSearch}>
+            &#8250;
+          </Button>
+        )}
       </InputContainer>
       <FilterCheckbox />
     </SearchFormContainer>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled/macro";
-import { PaddingsPattern } from "../Blocks.style";
+import { HoverLink, PaddingsPattern } from "../Blocks.style";
 
 export const PortfolioContainer = styled.div`
   ${PaddingsPattern}
@@ -51,6 +51,8 @@ export const Link = styled.a`
   font-weight: 400;
   color: #ffffff;
   text-decoration: none;
+
+  ${HoverLink}
 
   @media (max-width: 800px) {
     font-size: 28px;

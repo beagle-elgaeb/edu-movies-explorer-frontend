@@ -1,5 +1,4 @@
 import {
-  PreloaderBlock,
   PreloaderContainer,
   PreloaderRound,
 } from "./Preloader.style";
@@ -7,9 +6,7 @@ import {
 function Preloader() {
   return (
     <PreloaderContainer>
-      <PreloaderBlock>
         <PreloaderRound></PreloaderRound>
-      </PreloaderBlock>
     </PreloaderContainer>
   );
 }

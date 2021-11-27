@@ -1,4 +1,5 @@
-import "@fontsource/inter";
+import "@fontsource/inter/cyrillic.css";
+import "@fontsource/inter/latin.css";
 import "normalize.css";
 import React from "react";
 import ReactDOM from "react-dom";

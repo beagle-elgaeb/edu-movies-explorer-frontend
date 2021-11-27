@@ -1,6 +1,6 @@
 import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
-import { PaddingsPattern } from "../Blocks.style";
+import { HoverButton, HoverLink, PaddingsPattern } from "../Blocks.style";
 
 export const HeaderContainer = styled.header<{
   authorized: boolean;
@@ -46,9 +46,15 @@ export const LogoIcon = styled.div`
   margin: 11px 0 0 0;
 `;
 
-export const Links = styled.div`
+export const LinksBlock = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const NavBlock = styled.div`
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const LinkPattern = styled(Link)`
@@ -67,6 +73,8 @@ export const LinkSignin = styled(LinkPattern)`
     height: 26px;
     font-size: 10px;
   }
+
+  ${HoverLink}
 `;
 
 export const LinkLogin = styled(LinkPattern)`
@@ -77,31 +85,13 @@ export const LinkLogin = styled(LinkPattern)`
   color: #000000;
   margin-left: 30px;
 
+  ${HoverLink}
+
   @media (max-width: 500px) {
     height: 26px;
     width: 54px;
     font-size: 10px;
     margin-left: 14px;
-  }
-`;
-
-export const LinkMovies = styled(LinkPattern)`
-  font-size: 13px;
-  line-height: 18px;
-
-  @media (max-width: 800px) {
-    display: none;
-  }
-`;
-
-export const LinkSavedMovies = styled(LinkPattern)`
-  font-size: 13px;
-  line-height: 18px;
-  font-weight: 400;
-  margin-left: 16px;
-
-  @media (max-width: 800px) {
-    display: none;
   }
 `;
 
@@ -112,6 +102,8 @@ export const LinkAccount = styled(LinkPattern)`
   border-radius: 99em;
   font-size: 14px;
   line-height: 16px;
+
+  ${HoverButton}
 
   @media (max-width: 800px) {
     display: none;
@@ -130,8 +122,9 @@ export const Menu = styled.button`
     background: transparent;
     border: none;
     outline: none;
-    cursor: pointer;
   }
+
+  ${HoverButton}
 
   @media (max-width: 500px) {
     height: 43px;

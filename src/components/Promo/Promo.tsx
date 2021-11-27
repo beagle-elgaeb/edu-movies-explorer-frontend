@@ -27,6 +27,7 @@ function Promo() {
         <LearnMore
           href="https://practicum.yandex.ru/web/"
           alt-text="Яндекс.Практикум"
+          target="_blank"
         >
           Узнать больше
         </LearnMore>

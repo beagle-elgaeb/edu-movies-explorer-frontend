@@ -1,5 +1,5 @@
 import styled from "@emotion/styled/macro";
-import { PaddingsPattern, TitlePattern } from "../Blocks.style";
+import { HoverButton, PaddingsPattern, TitlePattern } from "../Blocks.style";
 
 export const TechsContainer = styled.div`
   ${PaddingsPattern}
@@ -96,6 +96,8 @@ export const Technology = styled.a`
   font-weight: 400;
   text-decoration: none;
   color: #ffffff;
+
+  ${HoverButton}
 
   @media (max-width: 800px) {
     font-size: 12px;

@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
+import { linksHeader } from "../../utils/lists";
 import Logo from "../Logo/Logo";
+import Navigation from "../Navigation/Navigation";
 import {
   HeaderContainer,
   LinkAccount,
   LinkLogin,
-  LinkMovies,
-  Links,
-  LinkSavedMovies,
+  LinksBlock,
   LinkSignin,
   Menu,
   MenuIcon,
+  NavBlock,
 } from "./Header.style";
 
-function Header() {
+function Header({ onMenuClick }: { onMenuClick: () => void }) {
   // Временно, для наблюдения всех состояний хедера ---------------------------
   // (залог, незалог, страницы аввторизации и регистрации) --------------------
   // (Enter переключает залог - незалог) --------------------------------------
@@ -34,6 +35,7 @@ function Header() {
       setVisible((visible) => !visible);
     }
   }
+
   // --------------------------------------------------------------------------
 
   return (
@@ -41,24 +43,23 @@ function Header() {
       {authorized ? (
         <HeaderContainer authorized={authorized} visible={visible}>
           <Logo />
-          <Links>
-            <LinkMovies to="/movies">Фильмы</LinkMovies>
-            <LinkSavedMovies to="/saved-movies">
-              Сохранённые фильмы
-            </LinkSavedMovies>
-            <Menu>
+          <LinksBlock>
+            <NavBlock>
+              <Navigation links={linksHeader} />
+            </NavBlock>
+            <Menu onClick={onMenuClick}>
               <MenuIcon></MenuIcon>
             </Menu>
-          </Links>
+          </LinksBlock>
           <LinkAccount to="/profile">Аккаунт</LinkAccount>
         </HeaderContainer>
       ) : (
         <HeaderContainer authorized={authorized} visible={visible}>
           <Logo />
-          <Links>
+          <LinksBlock>
             <LinkSignin to="/signup">Регистрация</LinkSignin>
             <LinkLogin to="/signin">Войти</LinkLogin>
-          </Links>
+          </LinksBlock>
         </HeaderContainer>
       )}
     </>

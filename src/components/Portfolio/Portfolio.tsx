@@ -13,12 +13,14 @@ function Portfolio() {
         <Link
           href="https://beagle-elgaeb.github.io/edu-how-to-learn/index.html"
           alt-text="Научиться учиться"
+          target="_blank"
         >
           Статичный сайт
         </Link>
         <Link
           href="https://beagle-elgaeb.github.io/edu-how-to-learn/index.html"
           alt-text="Научиться учиться"
+          target="_blank"
         >
           &#129125;
         </Link>
@@ -27,12 +29,14 @@ function Portfolio() {
         <Link
           href="https://beagle-elgaeb.github.io/edu-russian-travel/index.html"
           alt-text="Путешествия по России"
+          target="_blank"
         >
           Адаптивный сайт
         </Link>
         <Link
           href="https://beagle-elgaeb.github.io/edu-russian-travel/index.html"
           alt-text="Путешествия по России"
+          target="_blank"
         >
           &#129125;
         </Link>
@@ -41,12 +45,14 @@ function Portfolio() {
         <Link
           href="https://beagle-elgaeb.nomoredomains.rocks/"
           alt-text="Место"
+          target="_blank"
         >
           Одностраничное приложение
         </Link>
         <Link
           href="https://beagle-elgaeb.nomoredomains.rocks/"
           alt-text="Место"
+          target="_blank"
         >
           &#129125;
         </Link>

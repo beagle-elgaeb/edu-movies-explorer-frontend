@@ -1,4 +1,5 @@
 import styled from "@emotion/styled/macro";
+import { HoverLink } from "../Blocks.style";
 
 export const ErrorPopupOverlay = styled.div`
   height: 100vh;
@@ -62,6 +63,8 @@ export const Back = styled.button`
   font-weight: 400;
   color: #4285f4;
   margin: 0 0 60px;
+
+  ${HoverLink}
 
   @media (max-width: 800px) {
     margin: 0 0 222px;

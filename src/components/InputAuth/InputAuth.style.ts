@@ -34,4 +34,8 @@ export const Input = styled.input`
   font-weight: 400;
   color: #ffffff;
   padding: 0 15px;
+
+  :focus {
+    background: #3f3f3f;
+  }
 `;

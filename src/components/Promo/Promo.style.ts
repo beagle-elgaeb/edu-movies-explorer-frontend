@@ -1,4 +1,5 @@
 import styled from "@emotion/styled/macro";
+import { HoverLink } from "../Blocks.style";
 
 export const PromoContainer = styled.div`
   width: 100%;
@@ -92,6 +93,8 @@ export const LearnMore = styled.a`
   font-weight: 500;
   text-decoration: none;
   color: #ffffff;
+
+  ${HoverLink}
 `;
 
 export const GlobeBefore = styled.img`

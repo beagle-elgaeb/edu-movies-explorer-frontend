@@ -1,4 +1,5 @@
 import styled from "@emotion/styled/macro";
+import { HoverLink } from "../Blocks.style";
 
 export const ProfileContainer = styled.form`
   width: 100%;
@@ -92,6 +93,10 @@ export const Input = styled.input`
   color: #ffffff;
   margin: 0;
   padding: 0;
+
+  :focus {
+    border-bottom: 1px solid #ffffff;
+  }
 `;
 
 export const Buttons = styled.div`
@@ -115,6 +120,8 @@ export const Edit = styled.button`
   font-weight: 400;
   color: #ffffff;
   margin: 0 0 16px;
+
+  ${HoverLink}
 `;
 
 export const Exit = styled.button`
@@ -123,4 +130,6 @@ export const Exit = styled.button`
   outline: none;
   font-weight: 500;
   color: #ee3465;
+
+  ${HoverLink}
 `;

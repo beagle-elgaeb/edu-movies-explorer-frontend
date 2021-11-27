@@ -1,5 +1,6 @@
 import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
+import { HoverButton } from "../Blocks.style";
 
 export const LogoContainer = styled(Link)`
   height: 38px;
@@ -8,6 +9,8 @@ export const LogoContainer = styled(Link)`
   justify-content: center;
   background: #3ddc84;
   border-radius: 99em;
+
+  ${HoverButton}
 `;
 
 export const LogoIcon = styled.div`

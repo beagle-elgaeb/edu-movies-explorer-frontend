@@ -1,8 +1,8 @@
-import { Movie } from "../../utils/types";
+import { MovieType } from "../../utils/types";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { MoviesListContainer } from "./MoviesCardList.style";
 
-function MoviesCardList({ movies }: { movies: Movie[] }) {
+function MoviesCardList({ movies }: { movies: MovieType[] }) {
   return (
     <MoviesListContainer>
       {movies.map((movie, i) => (

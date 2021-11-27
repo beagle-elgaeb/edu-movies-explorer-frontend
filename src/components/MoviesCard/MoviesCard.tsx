@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Movie } from "../../utils/types";
+import { MovieType } from "../../utils/types";
 import {
   DurationMovie,
   FrameFromMovie,
@@ -11,7 +11,7 @@ import {
   Check,
 } from "./MoviesCard.style";
 
-function MoviesCard({ movie }: { movie: Movie }) {
+function MoviesCard({ movie }: { movie: MovieType }) {
   const [checked, setChecked] = useState(movie.saved);
 
   function handleCheck() {
@@ -27,7 +27,7 @@ function MoviesCard({ movie }: { movie: Movie }) {
           <CheckInput
             type="checkbox"
             checked={checked}
-            onClick={handleCheck}
+            onChange={handleCheck}
           ></CheckInput>
           <Check></Check>
         </CheckLabel>

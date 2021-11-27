@@ -34,12 +34,14 @@ function AboutMe() {
             <Link
               href="https://github.com/beagle-elgaeb"
               alt-text="Моя страница на GitHub"
+              target="_blank"
             >
               GitHub
             </Link>
             <Link
               href="https://www.instagram.com/evg._.su/"
               alt-text="Я на Instagram"
+              target="_blank"
             >
               Instagram
             </Link>

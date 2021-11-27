@@ -1,4 +1,5 @@
 import styled from "@emotion/styled/macro";
+import {  HoverButton } from "../Blocks.style";
 
 export const SearchFormContainer = styled.div`
   width: 100%;
@@ -76,6 +77,8 @@ export const Button = styled.button`
   color: #ffffff;
   outline: none;
   padding: 0 0 4px 2px;
+
+  ${HoverButton}
 
   @media (max-width: 500px) {
     bottom: 9px;

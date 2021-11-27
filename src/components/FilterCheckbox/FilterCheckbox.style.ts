@@ -1,7 +1,6 @@
 import styled from "@emotion/styled/macro";
 
-export const CheckContainer = styled.label`
-`;
+export const CheckContainer = styled.label``;
 
 export const CheckInput = styled.input`
   position: absolute;
@@ -44,6 +43,12 @@ export const Check = styled.div`
     margin: 0 auto;
   }
 
+  :hover {
+    ::before {
+      box-shadow: 0 0 3px 1px #ffffff;
+    }
+  }
+
   ::before {
     height: 20px;
     width: 36px;
@@ -52,7 +57,7 @@ export const Check = styled.div`
     left: 0;
     background: #343434;
     border-radius: 99em;
-    transition: 0.2s;
+    transition: 0.3s;
     content: "";
 
     @media (max-width: 800px) {
@@ -69,7 +74,7 @@ export const Check = styled.div`
     left: 2px;
     border-radius: 99em;
     background: #a0a0a0;
-    transition: 0.2s;
+    transition: 0.3s;
     content: "";
 
     @media (max-width: 800px) {

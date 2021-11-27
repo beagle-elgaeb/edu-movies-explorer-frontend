@@ -38,3 +38,20 @@ export const InformationPattern = css`
   border-top: 1px solid #dadada;
   padding: 66px 0 0 0;
 `;
+
+export const HoverLink = css`
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.7;
+  }
+`;
+
+export const HoverButton = css`
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.8;
+  }
+`;
+

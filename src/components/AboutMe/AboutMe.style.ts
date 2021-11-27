@@ -4,6 +4,7 @@ import {
   PaddingsPattern,
   InformationPattern,
   TitlePattern,
+  HoverLink,
 } from "../Blocks.style";
 
 export const AboutMeContainer = styled.div`
@@ -93,8 +94,9 @@ export const Link = styled.a`
   font-weight: 500;
   color: #ffffff;
   text-decoration: none;
-  cursor: pointer;
   margin: 0 20px 0 0;
+
+  ${HoverLink}
 
   @media (max-width: 500px) {
     margin: 0 26px 0 0;

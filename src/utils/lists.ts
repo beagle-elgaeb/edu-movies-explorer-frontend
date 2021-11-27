@@ -60,3 +60,29 @@ export const movies = [
     saved: true,
   },
 ];
+
+export const linksHeader = [
+  {
+    to: "/movies",
+    text: "Фильмы",
+  },
+  {
+    to: "/saved-movies",
+    text: "Сохранённые фильмы",
+  },
+];
+
+export const linksMenu = [
+  {
+    to: "/",
+    text: "Главная",
+  },
+  {
+    to: "/movies",
+    text: "Фильмы",
+  },
+  {
+    to: "/saved-movies",
+    text: "Сохранённые фильмы",
+  },
+];

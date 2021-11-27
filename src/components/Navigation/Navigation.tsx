@@ -1,14 +1,26 @@
-import "./Navigation.css";
+import { Link, NavigationContainer, Item } from "./Navigation.style";
+import { LinkType } from "../../utils/types";
 
-function Navigation() {
+type Props = {
+  links: LinkType[];
+  onClose?: () => void;
+};
+
+function Navigation({ links, onClose }: Props) {
   return (
-    <>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-    </>
+    <NavigationContainer>
+      {links.map((link, i) => (
+        <Item key={i}>
+          <Link
+            to={link.to}
+            className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={onClose}
+          >
+            {link.text}
+          </Link>
+        </Item>
+      ))}
+    </NavigationContainer>
   );
 }
 

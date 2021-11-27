@@ -9,6 +9,7 @@ import {
   TextPattern,
   TitlePattern,
 } from "../Auth.style";
+import { HoverButton, HoverLink } from "../Blocks.style";
 
 export const RegisterContainer = styled.form`
   ${ContainerPattern}
@@ -28,6 +29,8 @@ export const ButtonAndText = styled.div`
 
 export const Button = styled.button`
   ${ButtonPattern}
+
+  ${HoverButton}
 `;
 
 export const Text = styled.p`
@@ -36,4 +39,6 @@ export const Text = styled.p`
 
 export const LinkLogin = styled(Link)`
   ${LinkPattern}
+
+  ${HoverLink}
 `;

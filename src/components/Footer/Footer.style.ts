@@ -1,5 +1,5 @@
 import styled from "@emotion/styled/macro";
-import { PaddingsPattern } from "../Blocks.style";
+import { HoverLink, PaddingsPattern } from "../Blocks.style";
 
 export const FooterContainer = styled.footer`
   ${PaddingsPattern}
@@ -90,6 +90,8 @@ export const Link = styled.a`
   text-decoration: none;
   color: #ffffff;
   margin: 0 0 0 20px;
+
+  ${HoverLink}
 
   @media (max-width: 500px) {
     font-size: 12px;

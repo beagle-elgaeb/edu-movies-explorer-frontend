@@ -43,35 +43,35 @@ const preloaderInsideBlue = keyframes`
 `;
 
 export const PreloaderContainer = styled.div`
+  height: 34px;
+  width: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  padding: 20px;
-`;
+  position: absolute;
+  right: 0;
+  bottom: 13px;
+  padding: 0 auto;
 
-export const PreloaderBlock = styled.div`
-  width: 100px;
-  height: 100px;
-  position: relative;
+  @media (max-width: 500px) {
+    bottom: 9px;
+  }
 `;
 
 export const PreloaderRound = styled.span`
-  width: 100px;
-  height: 100px;
+  height: 34px;
+  width: 34px;
   position: absolute;
   top: 0;
   left: 0;
   background: #4285f4;
-  border-radius: 50px;
+  border-radius: 99em;
 
   ::after,
   ::before {
     content: "";
-    width: 100px;
-    height: 100px;
+    height: 34px;
+    width: 34px;
     position: absolute;
     top: 0;
     left: 0;
