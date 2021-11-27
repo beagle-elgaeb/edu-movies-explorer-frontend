@@ -1,6 +1,7 @@
 import styled from "@emotion/styled/macro";
 
-export const CheckContainer = styled.label``;
+export const CheckContainer = styled.label`
+`;
 
 export const CheckInput = styled.input`
   position: absolute;

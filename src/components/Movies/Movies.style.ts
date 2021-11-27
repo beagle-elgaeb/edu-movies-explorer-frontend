@@ -28,7 +28,12 @@ export const More = styled.button`
   line-height: 15px;
   font-weight: 500;
   color: #ffffff;
+  cursor: pointer;
   margin: 0 auto;
+
+  :hover {
+    box-shadow: 0 2px 8px 1px #ffffff15;
+  }
 
   @media (max-width: 500px) {
     width: 240px;

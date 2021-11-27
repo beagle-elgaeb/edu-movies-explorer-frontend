@@ -1,14 +1,16 @@
-import "./Preloader.css";
+import {
+  PreloaderBlock,
+  PreloaderContainer,
+  PreloaderRound,
+} from "./Preloader.style";
 
 function Preloader() {
   return (
-    <>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-      <div className="App">fdsafs</div>
-    </>
+    <PreloaderContainer>
+      <PreloaderBlock>
+        <PreloaderRound></PreloaderRound>
+      </PreloaderBlock>
+    </PreloaderContainer>
   );
 }
 

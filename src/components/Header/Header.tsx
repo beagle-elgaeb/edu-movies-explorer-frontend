@@ -30,7 +30,7 @@ function Header() {
     if (evt.key === "Enter") {
       setAuthorized((authorized) => !authorized);
     }
-    if (evt.ctrlKey && evt.key === "x") {
+    if ((evt.ctrlKey && evt.key === "x") || (evt.ctrlKey && evt.key === "ч")) {
       setVisible((visible) => !visible);
     }
   }

@@ -1,5 +1,6 @@
 import { movies } from "../../utils/lists";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import SearchForm from "../SearchForm/SearchForm";
 import { SavedMoviesContainer } from "./SavedMovies.style";
 
 function SavedMovies() {
@@ -7,6 +8,7 @@ function SavedMovies() {
 
   return (
     <SavedMoviesContainer>
+      <SearchForm />
       <MoviesCardList movies={savedMovies} />
     </SavedMoviesContainer>
   );

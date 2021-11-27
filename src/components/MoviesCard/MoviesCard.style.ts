@@ -7,6 +7,10 @@ export const MoviesCardContainer = styled.li`
   background: #222222;
   border-radius: 10px;
   list-style: none;
+
+  :hover {
+    box-shadow: 0 2px 8px 1px #ffffff15;
+  }
 `;
 
 export const FrameFromMovie = styled.div<{ frame: string }>`
@@ -68,8 +72,13 @@ export const Check = styled.div`
   position: relative;
   height: 16px;
   width: 16px;
+  border-radius: 99em;
   cursor: pointer;
   margin: 0;
+
+  :hover {
+    box-shadow: 0 0 3px 1px #ffffff;
+  }
 
   ::before {
     height: 16px;
