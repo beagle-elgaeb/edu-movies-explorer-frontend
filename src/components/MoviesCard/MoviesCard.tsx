@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { MovieType } from "../../utils/types";
 import {
+  Check,
+  CheckInput,
+  CheckLabel,
   DurationMovie,
   FrameFromMovie,
   MoviesCardContainer,
   NameMovie,
   NameMovieAndCheck,
-  CheckLabel,
-  CheckInput,
-  Check,
 } from "./MoviesCard.style";
 
 function MoviesCard({ movie }: { movie: MovieType }) {

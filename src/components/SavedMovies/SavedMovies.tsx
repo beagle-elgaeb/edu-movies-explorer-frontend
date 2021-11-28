@@ -2,7 +2,7 @@ import { useState } from "react";
 import { movies } from "../../utils/lists";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
-import { SavedMoviesContainer } from "./SavedMovies.style";
+import { NotFound, SavedMoviesContainer } from "./SavedMovies.style";
 
 function SavedMovies() {
   const savedMovies = movies.filter((movie) => movie.saved === true);
@@ -25,7 +25,11 @@ function SavedMovies() {
   return (
     <SavedMoviesContainer>
       <SearchForm search={search} handleSearch={handleSearch} />
-      {search ? <></> : <MoviesCardList movies={savedMovies} />}
+      {search ? (
+        <NotFound>Поиск не дал результатов...</NotFound>
+      ) : (
+        <MoviesCardList movies={savedMovies} />
+      )}
     </SavedMoviesContainer>
   );
 }

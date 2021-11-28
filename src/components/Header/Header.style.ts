@@ -2,13 +2,10 @@ import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
 import { HoverButton, HoverLink, PaddingsPattern } from "../Blocks.style";
 
-export const HeaderContainer = styled.header<{
-  authorized: boolean;
-  visible: boolean;
-}>`
+export const HeaderContainer = styled.header<{ authorized: boolean }>`
   ${PaddingsPattern}
   height: 74px;
-  display: ${({ visible }) => (visible ? "flex" : "none")};
+  display: flex;
   justify-content: space-between;
   align-items: center;
   background: ${({ authorized }) => (authorized ? "transparent" : "#073042")};

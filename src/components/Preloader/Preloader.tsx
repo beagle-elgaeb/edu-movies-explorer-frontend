@@ -1,12 +1,9 @@
-import {
-  PreloaderContainer,
-  PreloaderRound,
-} from "./Preloader.style";
+import { PreloaderContainer, PreloaderRound } from "./Preloader.style";
 
 function Preloader() {
   return (
     <PreloaderContainer>
-        <PreloaderRound></PreloaderRound>
+      <PreloaderRound></PreloaderRound>
     </PreloaderContainer>
   );
 }

@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from "react";
-import { Input, Label, InputAuthContainer, Error } from "./InputAuth.style";
+import { Error, Input, InputAuthContainer, Label } from "./InputAuth.style";
 
 type PropsType = {
   label: string;

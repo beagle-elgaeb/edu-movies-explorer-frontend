@@ -1,5 +1,5 @@
 import styled from "@emotion/styled/macro";
-import {  HoverButton } from "../Blocks.style";
+import { HoverButton } from "../Blocks.style";
 
 export const SearchFormContainer = styled.div`
   width: 100%;

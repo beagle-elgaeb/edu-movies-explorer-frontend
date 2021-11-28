@@ -1,29 +1,27 @@
 import styled from "@emotion/styled/macro";
 import { HoverLink } from "../Blocks.style";
 
-export const ErrorPopupOverlay = styled.div`
+export const NotFoundPageContainer = styled.div`
   height: 100vh;
-  width: 100%;
-  position: fixed;
+  width: 100vw;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: #202020;
-  z-index: 10;
-`;
-
-export const ErrorCodeAndText = styled.div`
-  margin: 246px 0 0;
+  padding: 246px 0 60px;
 
   @media (max-width: 800px) {
-    margin: 408px 0 0;
+    padding: 408px 0 222px;
   }
 
   @media (max-width: 500px) {
-    margin: 329px 0 0;
+    padding: 329px 0 30px;
   }
 `;
+
+export const ErrorCodeAndText = styled.div``;
 
 export const ErrorCode = styled.p`
   font-size: 140px;
@@ -62,17 +60,11 @@ export const Back = styled.button`
   line-height: 17px;
   font-weight: 400;
   color: #4285f4;
-  margin: 0 0 60px;
 
   ${HoverLink}
-
-  @media (max-width: 800px) {
-    margin: 0 0 222px;
-  }
 
   @media (max-width: 500px) {
     font-size: 12px;
     line-height: 15px;
-    margin: 0 0 30px;
   }
 `;

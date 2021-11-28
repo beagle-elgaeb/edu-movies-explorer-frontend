@@ -1,10 +1,10 @@
 import styled from "@emotion/styled/macro";
 import photoMe from "../../images/photo-me.jpeg";
 import {
-  PaddingsPattern,
-  InformationPattern,
-  TitlePattern,
   HoverLink,
+  InformationPattern,
+  PaddingsPattern,
+  TitlePattern,
 } from "../Blocks.style";
 
 export const AboutMeContainer = styled.div`

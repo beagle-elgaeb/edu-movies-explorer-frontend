@@ -1,9 +1,10 @@
 import styled from "@emotion/styled/macro";
-import { HoverLink } from "../Blocks.style";
+import { HoverButton, HoverLink } from "../Blocks.style";
 
 export const ProfileContainer = styled.form`
   width: 100%;
   box-sizing: border-box;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,6 +101,8 @@ export const Input = styled.input`
 `;
 
 export const Buttons = styled.div`
+  width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,6 +114,37 @@ export const Buttons = styled.div`
     line-height: 15px;
     margin: 0;
   }
+`;
+
+export const Error = styled.span<{ visible: boolean }>`
+  position: absolute;
+  top: -33px;
+  display: ${({ visible }) => (visible ? "inline" : "none")};
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 400;
+  text-align: center;
+  color: #ff004c;
+`;
+
+export const Save = styled.button<{ erroneous: boolean }>`
+  height: 45px;
+  width: 410px;
+  background: ${({ erroneous }) => (erroneous ? "#f8f8f8" : "#3456f3")};
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+  color: ${({ erroneous }) => (erroneous ? "#c2c2c2" : "#ffffff")};
+
+  @media (max-width: 500px) {
+    width: 85%;
+    min-width: 260px;
+  }
+
+  ${HoverButton}
 `;
 
 export const Edit = styled.button`

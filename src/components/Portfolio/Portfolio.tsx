@@ -1,8 +1,8 @@
 import {
-  Title,
   EduWorkLink,
-  PortfolioContainer,
   Link,
+  PortfolioContainer,
+  Title,
 } from "./Portfolio.style";
 
 function Portfolio() {

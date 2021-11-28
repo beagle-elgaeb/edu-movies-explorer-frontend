@@ -2,7 +2,7 @@ import { useState } from "react";
 import { movies } from "../../utils/lists";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
-import { MoviesContainer, More } from "./Movies.style";
+import { More, MoviesContainer, NotFound } from "./Movies.style";
 
 function Movies() {
   // Временно, для наблюдения прелоадера --------------------------------------
@@ -24,7 +24,7 @@ function Movies() {
     <MoviesContainer>
       <SearchForm search={search} handleSearch={handleSearch} />
       {search ? (
-        <></>
+        <NotFound>Поиск не дал результатов...</NotFound>
       ) : (
         <>
           <MoviesCardList movies={movies} />

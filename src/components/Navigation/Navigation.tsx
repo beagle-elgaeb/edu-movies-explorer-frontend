@@ -1,5 +1,5 @@
-import { Link, NavigationContainer, Item } from "./Navigation.style";
 import { LinkType } from "../../utils/types";
+import { Item, Link, NavigationContainer } from "./Navigation.style";
 
 type PropsType = {
   links: LinkType[];

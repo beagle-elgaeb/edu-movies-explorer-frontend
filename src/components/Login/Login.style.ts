@@ -4,6 +4,8 @@ import {
   ButtonAndTextPattern,
   ButtonPattern,
   ContainerPattern,
+  ErrorContainerPattern,
+  ErrorPattern,
   InputsPattern,
   LinkPattern,
   TextPattern,
@@ -12,6 +14,14 @@ import {
 
 export const LoginContainer = styled.form`
   ${ContainerPattern}
+`;
+
+export const ErrorContainer = styled.div`
+  ${ErrorContainerPattern}
+`;
+
+export const Error = styled.span<{ visible: boolean }>`
+  ${ErrorPattern}
 `;
 
 export const Title = styled.h3`

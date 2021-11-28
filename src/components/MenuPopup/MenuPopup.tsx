@@ -1,11 +1,11 @@
 import { linksMenu } from "../../utils/lists";
 import Navigation from "../Navigation/Navigation";
 import {
+  Close,
+  LinkAccount,
+  MenuPopupContainer,
   MenuPopupOverlay,
   NavigationBlock,
-  LinkAccount,
-  Close,
-  MenuPopupContainer,
 } from "./MenuPopup.style";
 
 type PropsType = {

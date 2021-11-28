@@ -15,24 +15,18 @@ import {
 
 function Header({ onMenuClick }: { onMenuClick: () => void }) {
   // Временно, для наблюдения всех состояний хедера ---------------------------
-  // (залог, незалог, страницы аввторизации и регистрации) --------------------
-  // (Enter переключает залог - незалог) --------------------------------------
-  // (Ctrl + Enter скрывает хедер) --------------------------------------------
+  // Enter переключает залог - незалог ----------------------------------------
 
   const [authorized, setAuthorized] = useState(false);
-  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     document.addEventListener("keydown", onKeydown);
     return () => document.removeEventListener("keydown", onKeydown);
   }, []);
 
-  function onKeydown(evt: KeyboardEvent) {
-    if (evt.key === "Enter") {
+  function onKeydown({ key }: { key: string }) {
+    if (key === "Enter") {
       setAuthorized((authorized) => !authorized);
-    }
-    if ((evt.ctrlKey && evt.key === "x") || (evt.ctrlKey && evt.key === "ч")) {
-      setVisible((visible) => !visible);
     }
   }
 
@@ -41,7 +35,7 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
   return (
     <>
       {authorized ? (
-        <HeaderContainer authorized={authorized} visible={visible}>
+        <HeaderContainer authorized={authorized}>
           <Logo />
           <LinksBlock>
             <NavBlock>
@@ -54,7 +48,7 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
           <LinkAccount to="/profile">Аккаунт</LinkAccount>
         </HeaderContainer>
       ) : (
-        <HeaderContainer authorized={authorized} visible={visible}>
+        <HeaderContainer authorized={authorized}>
           <Logo />
           <LinksBlock>
             <LinkSignin to="/signup">Регистрация</LinkSignin>

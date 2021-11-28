@@ -1,7 +1,7 @@
 import styled from "@emotion/styled/macro";
 import {
-  PaddingsPattern,
   InformationPattern,
+  PaddingsPattern,
   TitlePattern,
 } from "../Blocks.style";
 
