@@ -44,17 +44,17 @@ export const ButtonAndTextPattern = css`
   align-items: center;
 `;
 
-export const ButtonPattern = css`
+export const ButtonPattern = ({ disabled }: { disabled?: boolean }) => css`
   height: 45px;
   width: 100%;
-  background: #4285f4;
+  background: ${disabled ? "#F8F8F8" : "#4285f4"};
   border: none;
   border-radius: 3px;
   outline: none;
   font-size: 14px;
   line-height: 17px;
   font-weight: 500;
-  color: #ffffff;
+  color: ${disabled ? "#c2c2c2" : "#ffffff"};
 `;
 
 export const TextPattern = css`

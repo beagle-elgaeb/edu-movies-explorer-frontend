@@ -2,7 +2,26 @@ import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
 import { HoverButton } from "../Blocks.style";
 
-export const MenuPopupOverlay = styled.div<{ isOpen: boolean }>`
+export const MenuPopupOverlay = styled.div<{ onened: boolean }>`
+  display: none;
+
+  @media (max-width: 800px) {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: end;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    visibility: ${({ onened }) => (onened ? "visible" : "hidden")};
+    opacity: ${({ onened }) => (onened ? "1" : "0")};
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in;
+    z-index: ${({ onened }) => (onened ? "9" : "-1")};
+  }
+`;
+
+export const MenuPopupContainer = styled.div<{ onened: boolean }>`
   display: none;
 
   @media (max-width: 800px) {
@@ -10,12 +29,13 @@ export const MenuPopupOverlay = styled.div<{ isOpen: boolean }>`
     width: 68%;
     position: fixed;
     top: 0;
-    right: 0;
-    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+    right: ${({ onened }) => (onened ? "0" : "-500px")};
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: #202020;
+    transition: all 0.3s ease-in;
     z-index: 10;
   }
 

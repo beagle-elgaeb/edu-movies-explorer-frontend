@@ -28,6 +28,16 @@ function Register() {
     setPass(evt.currentTarget.value);
   }
 
+  const [errorName, setErrorName] = useState(false);
+
+  function showError() {
+    if (name === "Евгения") {
+      setErrorName(false);
+    } else {
+      setErrorName(true);
+    }
+  }
+
   return (
     <RegisterContainer>
       <div>
@@ -39,6 +49,8 @@ function Register() {
             type="text"
             value={name}
             handleChange={handleChangeName}
+            erroneous={errorName}
+            showError={showError}
           />
           <InputAuth
             label="E-mail"
@@ -55,7 +67,7 @@ function Register() {
         </Inputs>
       </div>
       <ButtonAndText>
-        <Button>Зарегистрироваться</Button>
+        <Button disabled={errorName}>Зарегистрироваться</Button>
         <Text>
           Уже зарегистрированы?<LinkLogin to="/signin">Войти</LinkLogin>
         </Text>

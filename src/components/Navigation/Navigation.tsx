@@ -1,12 +1,12 @@
 import { Link, NavigationContainer, Item } from "./Navigation.style";
 import { LinkType } from "../../utils/types";
 
-type Props = {
+type PropsType = {
   links: LinkType[];
   onClose?: () => void;
 };
 
-function Navigation({ links, onClose }: Props) {
+function Navigation({ links, onClose }: PropsType) {
   return (
     <NavigationContainer>
       {links.map((link, i) => (

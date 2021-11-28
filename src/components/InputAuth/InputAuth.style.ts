@@ -20,7 +20,7 @@ export const Label = styled.label`
   color: #8b8b8b;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ erroneous: boolean | undefined }>`
   height: 100%;
   width: 100%;
   box-sizing: border-box;
@@ -32,10 +32,21 @@ export const Input = styled.input`
   font-size: 13px;
   line-height: 16px;
   font-weight: 400;
-  color: #ffffff;
+  color: ${({ erroneous }) => (erroneous ? "#ee3465" : "#ffffff")};
   padding: 0 15px;
 
   :focus {
     background: #3f3f3f;
   }
+`;
+
+export const Error = styled.span<{ erroneous: boolean | undefined }>`
+  display: ${({ erroneous }) => (erroneous ? "inline" : "none")};
+  position: absolute;
+  bottom: -17px;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+  color: #ee3465;
+  padding: -12 0 0 0;
 `;

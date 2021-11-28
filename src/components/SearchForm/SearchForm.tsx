@@ -8,12 +8,12 @@ import {
   SearchFormContainer,
 } from "./SearchForm.style";
 
-type Props = {
+type PropsType = {
   search?: boolean;
   handleSearch?: () => void;
 };
 
-function SearchForm({ search, handleSearch }: Props) {
+function SearchForm({ search, handleSearch }: PropsType) {
   const [searchQuery, setSearchQuery] = useState("");
 
   function handleChangeSearchQuery(evt: React.FormEvent<HTMLInputElement>) {

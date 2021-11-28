@@ -93,15 +93,9 @@ export const Weeks = styled.div`
   background: #3ddc84;
   color: #000000;
 
-  :nth-child(2) {
+  :nth-of-type(2) {
     background: #303030;
     color: #ffffff;
-  }
-
-  @media (max-width: 800px) {
-  }
-
-  @media (max-width: 600px) {
   }
 `;
 

@@ -26,7 +26,7 @@ export const ButtonAndText = styled.div`
   ${ButtonAndTextPattern}
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<{ disabled?: boolean }>`
   ${ButtonPattern}
 `;
 

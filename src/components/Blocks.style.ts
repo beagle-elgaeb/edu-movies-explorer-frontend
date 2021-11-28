@@ -40,6 +40,7 @@ export const InformationPattern = css`
 `;
 
 export const HoverLink = css`
+  transition: opacity 0.2s ease-out;
   cursor: pointer;
 
   :hover {
@@ -48,10 +49,10 @@ export const HoverLink = css`
 `;
 
 export const HoverButton = css`
+  transition: opacity 0.2s ease-out;
   cursor: pointer;
 
   :hover {
     opacity: 0.8;
   }
 `;
-

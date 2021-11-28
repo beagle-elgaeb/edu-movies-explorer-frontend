@@ -5,23 +5,26 @@ import {
   NavigationBlock,
   LinkAccount,
   Close,
+  MenuPopupContainer,
 } from "./MenuPopup.style";
 
-type Props = {
+type PropsType = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-function MenuPopup({ isOpen, onClose }: Props) {
+function MenuPopup({ isOpen, onClose }: PropsType) {
   return (
-    <MenuPopupOverlay isOpen={isOpen}>
-      <Close onClick={onClose}></Close>
-      <NavigationBlock>
-        <Navigation links={linksMenu} onClose={onClose} />
-      </NavigationBlock>
-      <LinkAccount to="/profile" onClick={onClose}>
-        Аккаунт
-      </LinkAccount>
+    <MenuPopupOverlay onened={isOpen}>
+      <MenuPopupContainer onened={isOpen}>
+        <Close onClick={onClose}></Close>
+        <NavigationBlock>
+          <Navigation links={linksMenu} onClose={onClose} />
+        </NavigationBlock>
+        <LinkAccount to="/profile" onClick={onClose}>
+          Аккаунт
+        </LinkAccount>
+      </MenuPopupContainer>
     </MenuPopupOverlay>
   );
 }
