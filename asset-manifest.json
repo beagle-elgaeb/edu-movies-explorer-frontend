@@ -1,29 +1,29 @@
 {
   "files": {
     "main.css": "/edu-movies-explorer-frontend/static/css/main.5f4d44e8.chunk.css",
-    "main.js": "/edu-movies-explorer-frontend/static/js/main.74a94892.chunk.js",
-    "main.js.map": "/edu-movies-explorer-frontend/static/js/main.74a94892.chunk.js.map",
-    "runtime-main.js": "/edu-movies-explorer-frontend/static/js/runtime-main.8805a73a.js",
-    "runtime-main.js.map": "/edu-movies-explorer-frontend/static/js/runtime-main.8805a73a.js.map",
+    "main.js": "/edu-movies-explorer-frontend/static/js/main.d32033d8.chunk.js",
+    "main.js.map": "/edu-movies-explorer-frontend/static/js/main.d32033d8.chunk.js.map",
+    "runtime-main.js": "/edu-movies-explorer-frontend/static/js/runtime-main.af8e702c.js",
+    "runtime-main.js.map": "/edu-movies-explorer-frontend/static/js/runtime-main.af8e702c.js.map",
     "static/css/2.75e336e0.chunk.css": "/edu-movies-explorer-frontend/static/css/2.75e336e0.chunk.css",
-    "static/js/2.09bab198.chunk.js": "/edu-movies-explorer-frontend/static/js/2.09bab198.chunk.js",
-    "static/js/2.09bab198.chunk.js.map": "/edu-movies-explorer-frontend/static/js/2.09bab198.chunk.js.map",
-    "static/js/3.d18627fe.chunk.js": "/edu-movies-explorer-frontend/static/js/3.d18627fe.chunk.js",
-    "static/js/3.d18627fe.chunk.js.map": "/edu-movies-explorer-frontend/static/js/3.d18627fe.chunk.js.map",
+    "static/js/2.2d073132.chunk.js": "/edu-movies-explorer-frontend/static/js/2.2d073132.chunk.js",
+    "static/js/2.2d073132.chunk.js.map": "/edu-movies-explorer-frontend/static/js/2.2d073132.chunk.js.map",
+    "static/js/3.0dd3e593.chunk.js": "/edu-movies-explorer-frontend/static/js/3.0dd3e593.chunk.js",
+    "static/js/3.0dd3e593.chunk.js.map": "/edu-movies-explorer-frontend/static/js/3.0dd3e593.chunk.js.map",
     "index.html": "/edu-movies-explorer-frontend/index.html",
     "static/css/2.75e336e0.chunk.css.map": "/edu-movies-explorer-frontend/static/css/2.75e336e0.chunk.css.map",
     "static/css/main.5f4d44e8.chunk.css.map": "/edu-movies-explorer-frontend/static/css/main.5f4d44e8.chunk.css.map",
-    "static/js/2.09bab198.chunk.js.LICENSE.txt": "/edu-movies-explorer-frontend/static/js/2.09bab198.chunk.js.LICENSE.txt",
+    "static/js/2.2d073132.chunk.js.LICENSE.txt": "/edu-movies-explorer-frontend/static/js/2.2d073132.chunk.js.LICENSE.txt",
     "static/media/globe.d12e7f84.svg": "/edu-movies-explorer-frontend/static/media/globe.d12e7f84.svg",
     "static/media/cyrillic.css": "/edu-movies-explorer-frontend/static/media/inter-cyrillic-900-normal.8ba9d16d.woff2",
     "static/media/latin.css": "/edu-movies-explorer-frontend/static/media/inter-latin-900-normal.5d239764.woff2",
     "static/media/photo-me.46661e9e.jpeg": "/edu-movies-explorer-frontend/static/media/photo-me.46661e9e.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8805a73a.js",
+    "static/js/runtime-main.af8e702c.js",
     "static/css/2.75e336e0.chunk.css",
-    "static/js/2.09bab198.chunk.js",
+    "static/js/2.2d073132.chunk.js",
     "static/css/main.5f4d44e8.chunk.css",
-    "static/js/main.74a94892.chunk.js"
+    "static/js/main.d32033d8.chunk.js"
   ]
 }
