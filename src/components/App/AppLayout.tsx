@@ -15,9 +15,19 @@ export function Layout() {
     setMenuPopupOpen(true);
   }
 
+  function onKeydown({ key }: KeyboardEvent) {
+    if (key === "Escape") {
+      closeAllPopups();
+    }
+  }
+
   return (
     <>
-      <MenuPopup isOpen={menuPopupOpen} onClose={closeAllPopups} />
+      <MenuPopup
+        isOpen={menuPopupOpen}
+        onClose={closeAllPopups}
+        onKeydown={onKeydown}
+      />
       <div>
         <Header onMenuClick={handleMenuClick} />
         <main>

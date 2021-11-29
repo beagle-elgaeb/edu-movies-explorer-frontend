@@ -1,35 +1,17 @@
-import { ChangeEventHandler } from "react";
+import { InputHTMLAttributes } from "react";
 import { Error, Input, InputAuthContainer, Label } from "./InputAuth.style";
 
 type PropsType = {
   label: string;
-  type: string;
-  value: string;
-  handleChange: ChangeEventHandler<HTMLInputElement>;
-  erroneous?: boolean;
-  showError?: () => void;
-};
+  errorText?: string;
+} & InputHTMLAttributes<HTMLInputElement>;
 
-function InputAuth({
-  label,
-  type,
-  value,
-  handleChange,
-  erroneous,
-  showError,
-}: PropsType) {
+function InputAuth({ label, errorText, ...rest }: PropsType) {
   return (
     <InputAuthContainer>
       <Label>{label}</Label>
-      <Input
-        value={value}
-        type={type}
-        placeholder={label}
-        onChange={handleChange}
-        erroneous={erroneous}
-        onBlur={showError}
-      />
-      <Error erroneous={erroneous}>Что-то пошло не так...</Error>
+      <Input placeholder={label} erroneous={!!errorText} {...rest} />
+      <Error erroneous={!!errorText}>{errorText}</Error>
     </InputAuthContainer>
   );
 }

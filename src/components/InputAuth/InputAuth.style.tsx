@@ -20,7 +20,7 @@ export const Label = styled.label`
   color: #8b8b8b;
 `;
 
-export const Input = styled.input<{ erroneous: boolean | undefined }>`
+export const Input = styled.input<{ erroneous: boolean }>`
   height: 100%;
   width: 100%;
   box-sizing: border-box;
@@ -40,7 +40,7 @@ export const Input = styled.input<{ erroneous: boolean | undefined }>`
   }
 `;
 
-export const Error = styled.span<{ erroneous: boolean | undefined }>`
+export const Error = styled.span<{ erroneous: boolean }>`
   display: ${({ erroneous }) => (erroneous ? "inline" : "none")};
   position: absolute;
   bottom: -17px;

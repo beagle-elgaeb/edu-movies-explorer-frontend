@@ -1,4 +1,6 @@
+import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import * as Yup from "yup";
 import InputAuth from "../InputAuth/InputAuth";
 import Logo from "../Logo/Logo";
 import {
@@ -14,31 +16,27 @@ import {
 } from "./Register.style";
 
 function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-
-  function handleChangeName(evt: React.FormEvent<HTMLInputElement>) {
-    setName(evt.currentTarget.value);
-  }
-
-  function handleChangeEmail(evt: React.FormEvent<HTMLInputElement>) {
-    setEmail(evt.currentTarget.value);
-  }
-
-  function handleChangePass(evt: React.FormEvent<HTMLInputElement>) {
-    setPass(evt.currentTarget.value);
-  }
-
-  const [errorName, setErrorName] = useState(false);
-
-  function showError() {
-    if (name === "Евгения") {
-      setErrorName(false);
-    } else {
-      setErrorName(true);
-    }
-  }
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(2, "Имя не должно быть короче 2 символов")
+        .max(60, "Имя не должно быть длиннее 60 символов")
+        .required("Введите, пожалуйста, имя"),
+      email: Yup.string()
+        .email("Некорректный e-mail")
+        .required("Введите, пожалуйста, e-mail"),
+      password: Yup.string()
+        .min(8, "Пароль не должен быть короче 8 символов")
+        .max(15, "Пароль не должен быть длиннее 15 символов")
+        .required("Введите, пожалуйста, пароль"),
+    }),
+    onSubmit: () => {},
+  });
 
   // Временно, для наблюдения всех сообщений об ошибке ------------------------
   // (нажатие клавиш 1 и 2 включает и выключает ошибки) -----------------------
@@ -49,8 +47,6 @@ function Register() {
     document.addEventListener("keydown", onKeydown);
 
     function onKeydown({ key }: { key: string }) {
-      console.log(key);
-
       if (key === "1" || key === "2") {
         setErrors((state) => ({ ...state, [key]: !state[key] }));
       }
@@ -60,6 +56,9 @@ function Register() {
   }, []);
 
   // --------------------------------------------------------------------------
+
+  const getError = (name: keyof typeof formik.values) =>
+    formik.touched[name] ? formik.errors[name] : undefined;
 
   return (
     <RegisterContainer>
@@ -79,27 +78,25 @@ function Register() {
           <InputAuth
             label="Имя"
             type="text"
-            value={name}
-            handleChange={handleChangeName}
-            erroneous={errorName}
-            showError={showError}
+            {...formik.getFieldProps("name")}
+            errorText={getError("name")}
           />
           <InputAuth
             label="E-mail"
             type="email"
-            value={email}
-            handleChange={handleChangeEmail}
+            {...formik.getFieldProps("email")}
+            errorText={getError("email")}
           />
           <InputAuth
             label="Пароль"
             type="password"
-            value={pass}
-            handleChange={handleChangePass}
+            {...formik.getFieldProps("password")}
+            errorText={getError("password")}
           />
         </Inputs>
       </div>
       <ButtonAndText>
-        <Button disabled={errorName}>Зарегистрироваться</Button>
+        <Button disabled={!formik.isValid}>Зарегистрироваться</Button>
         <Text>
           Уже зарегистрированы?<LinkLogin to="/signin">Войти</LinkLogin>
         </Text>

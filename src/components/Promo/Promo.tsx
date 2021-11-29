@@ -14,7 +14,7 @@ function Promo() {
   return (
     <PromoContainer>
       <PromoBlock>
-        <GlobeBefore src={globe}></GlobeBefore>
+        <GlobeBefore src={globe} alt="Глобус"></GlobeBefore>
         <TitleMax>
           Учебный проект студента факультета Веб&#8209;разработки.
         </TitleMax>

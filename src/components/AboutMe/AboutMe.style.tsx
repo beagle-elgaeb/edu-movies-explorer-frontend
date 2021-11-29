@@ -1,5 +1,5 @@
 import styled from "@emotion/styled/macro";
-import photoMe from "../../images/photo-me.jpeg";
+import photoMe from "../../images/photo-me.jpg";
 import {
   HoverLink,
   InformationPattern,

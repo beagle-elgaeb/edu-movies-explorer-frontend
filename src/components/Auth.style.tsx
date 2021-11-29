@@ -79,7 +79,7 @@ export const ButtonAndTextPattern = css`
   align-items: center;
 `;
 
-export const ButtonPattern = ({ disabled }: { disabled?: boolean }) => css`
+export const ButtonPattern = ({ disabled }: { disabled: boolean }) => css`
   height: 45px;
   width: 100%;
   background: ${disabled ? "#F8F8F8" : "#4285f4"};
