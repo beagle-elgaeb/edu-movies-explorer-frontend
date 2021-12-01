@@ -1,21 +1,26 @@
 import styled from "@emotion/styled/macro";
-import { HoverLink } from "../Blocks.style";
+import { BlockPattern, HoverLink } from "../Blocks.style";
 
 export const PromoContainer = styled.div`
-  width: 100%;
-  box-sizing: border-box;
+  ${BlockPattern}
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   background: #073042;
-  padding: 75px 5.5%;
+  padding-top: 75px;
+  padding-bottom: 75px;
 
   @media (max-width: 800px) {
-    padding: 140px 4% 75px;
+    padding-top: 140px;
+    padding-bottom: 75px;
+    padding-left: 4%;
+    padding-right: 4%;
   }
 
   @media (max-width: 500px) {
-    padding: 70px 2% 30px;
+    padding-bottom: 30px;
+    padding-left: 2%;
+    padding-right: 2%;
   }
 `;
 

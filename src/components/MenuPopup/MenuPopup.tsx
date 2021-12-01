@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { linksMenu } from "../../utils/lists";
-import Navigation from "../Navigation/Navigation";
 import {
   Close,
+  Item,
   LinkAccount,
+  LinkMenu,
   MenuPopupContainer,
   MenuPopupOverlay,
   NavigationBlock,
@@ -23,7 +24,7 @@ function MenuPopup({ isOpen, onClose, onKeydown }: PropsType) {
 
     document.addEventListener("keydown", onKeydown);
     return () => document.removeEventListener("keydown", onKeydown);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   return (
@@ -31,7 +32,17 @@ function MenuPopup({ isOpen, onClose, onKeydown }: PropsType) {
       <MenuPopupContainer onened={isOpen} onClick={(e) => e.stopPropagation()}>
         <Close onClick={onClose}></Close>
         <NavigationBlock>
-          <Navigation links={linksMenu} onClose={onClose} />
+          {linksMenu.map((link, i) => (
+            <Item key={i}>
+              <LinkMenu
+                to={link.to}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                onClick={onClose}
+              >
+                {link.text}
+              </LinkMenu>
+            </Item>
+          ))}
         </NavigationBlock>
         <LinkAccount to="/profile" onClick={onClose}>
           Аккаунт

@@ -40,6 +40,7 @@ export const Check = styled.div`
 
   @media (max-width: 500px) {
     width: fit-content;
+    font-size: 11px;
     margin: 0 auto;
   }
 

@@ -1,12 +1,19 @@
 import styled from "@emotion/styled/macro";
 import {
+  BlockPattern,
   InformationPattern,
-  PaddingsPattern,
   TitlePattern,
 } from "../Blocks.style";
 
 export const AboutProjectContainer = styled.div`
-  ${PaddingsPattern}
+  ${BlockPattern}
+  padding-top: 110px;
+  padding-bottom: 100px;
+
+  @media (max-width: 800px) {
+    padding-top: 91px;
+    padding-bottom: 82px;
+  }
 `;
 
 export const Title = styled.h3`
@@ -23,7 +30,7 @@ export const Information = styled.div`
 
   @media (max-width: 800px) {
     gap: 30px;
-    margin: 0 0 93px;
+    margin: 0 0 92px;
   }
 
   @media (max-width: 600px) {
@@ -78,8 +85,13 @@ export const Infographics = styled.div`
   line-height: 17px;
   font-weight: 400;
 
+  @media (max-width: 800px) {
+    grid-template-columns: 5fr 19fr;
+  }
+
   @media (max-width: 600px) {
-    grid-template-rows: repeat(2, 35px);
+    grid-template-columns: 25fr 46fr;
+    grid-template-rows: 35px 26px;
     row-gap: 1px;
     font-size: 11px;
     line-height: 13px;
@@ -102,6 +114,6 @@ export const Weeks = styled.div`
 export const End = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   color: #a0a0a0;
+  margin: 10px 0 0;
 `;

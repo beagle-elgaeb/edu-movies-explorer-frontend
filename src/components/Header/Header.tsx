@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { linksHeader } from "../../utils/lists";
 import Logo from "../Logo/Logo";
-import Navigation from "../Navigation/Navigation";
 import {
   HeaderContainer,
+  Item,
   LinkAccount,
   LinkLogin,
+  LinkMenu,
   LinksBlock,
   LinkSignin,
   Menu,
@@ -39,7 +40,16 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
           <Logo />
           <LinksBlock>
             <NavBlock>
-              <Navigation links={linksHeader} />
+              {linksHeader.map((link, i) => (
+                <Item key={i}>
+                  <LinkMenu
+                    to={link.to}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    {link.text}
+                  </LinkMenu>
+                </Item>
+              ))}
             </NavBlock>
             <Menu onClick={onMenuClick}>
               <MenuIcon></MenuIcon>

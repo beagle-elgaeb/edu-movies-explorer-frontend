@@ -8,6 +8,7 @@ import {
   ButtonAndText,
   Error,
   ErrorContainer,
+  FormWithoutButton,
   Inputs,
   LinkRegister,
   LoginContainer,
@@ -70,7 +71,7 @@ function Login() {
           При авторизации произошла ошибка. Переданный токен некорректен.
         </Error>
       </ErrorContainer>
-      <div>
+      <FormWithoutButton>
         <Logo />
         <Title>Рады видеть!</Title>
         <Inputs>
@@ -87,7 +88,7 @@ function Login() {
             errorText={getError("password")}
           />
         </Inputs>
-      </div>
+      </FormWithoutButton>
       <ButtonAndText>
         <Button disabled={!formik.isValid}>Войти</Button>
         <Text>

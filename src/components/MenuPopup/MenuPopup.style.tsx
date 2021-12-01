@@ -1,6 +1,6 @@
 import styled from "@emotion/styled/macro";
-import { Link } from "react-router-dom";
-import { HoverButton } from "../Blocks.style";
+import { Link, NavLink } from "react-router-dom";
+import { HoverButton, HoverLink } from "../Blocks.style";
 
 export const MenuPopupOverlay = styled.div<{ onened: boolean }>`
   display: none;
@@ -46,8 +46,8 @@ export const MenuPopupContainer = styled.div<{ onened: boolean }>`
 
 export const Close = styled.button`
   @media (max-width: 800px) {
-    height: 19px;
-    width: 19px;
+    height: 17px;
+    width: 17px;
     position: absolute;
     top: 30px;
     right: 30px;
@@ -60,20 +60,20 @@ export const Close = styled.button`
     background: linear-gradient(
         45deg,
         rgba(255, 255, 255, 0) 0,
-        rgba(255, 255, 255, 0) 12px,
-        rgba(255, 255, 255, 1) 12px,
-        rgba(255, 255, 255, 1) 15px,
-        rgba(255, 255, 255, 0) 15px,
-        rgba(255, 255, 255, 0) 27px
+        rgba(255, 255, 255, 0) 10px,
+        rgba(255, 255, 255, 1) 10px,
+        rgba(255, 255, 255, 1) 14px,
+        rgba(255, 255, 255, 0) 13px,
+        rgba(255, 255, 255, 0) 23px
       ),
       linear-gradient(
         135deg,
         rgba(255, 255, 255, 0) 0,
-        rgba(255, 255, 255, 0) 12px,
-        rgba(255, 255, 255, 1) 12px,
-        rgba(255, 255, 255, 1) 15px,
-        rgba(255, 255, 255, 0) 15px,
-        rgba(255, 255, 255, 0) 27px
+        rgba(255, 255, 255, 0) 10px,
+        rgba(255, 255, 255, 1) 10px,
+        rgba(255, 255, 255, 1) 14px,
+        rgba(255, 255, 255, 0) 13px,
+        rgba(255, 255, 255, 0) 23px
       );
   }
 
@@ -84,12 +84,54 @@ export const Close = styled.button`
 `;
 
 export const NavigationBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+
   @media (max-width: 800px) {
     margin: 159px 0 0;
   }
 
   @media (max-width: 500px) {
-    margin: 144px 0 0;
+    margin: 145px 0 0;
+  }
+`;
+
+export const Item = styled.li`
+  list-style: none;
+
+  @media (max-width: 800px) {
+    margin: 0 0 28px;
+  }
+
+  @media (max-width: 500px) {
+    margin: 0 0 24px;
+  }
+`;
+
+export const LinkMenu = styled(NavLink)`
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #ffffff;
+
+  ${HoverLink}
+
+  @media (max-width: 800px) {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+  }
+
+  &.active {
+    font-weight: 500;
+
+    @media (max-width: 800px) {
+      text-decoration: underline;
+    }
   }
 `;
 

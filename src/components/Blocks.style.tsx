@@ -1,16 +1,23 @@
 import { css } from "@emotion/react";
 
-export const PaddingsPattern = css`
+export const BlockPattern = css`
   width: 100%;
   box-sizing: border-box;
-  padding: 100px 5.5%;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 5.5%;
+  padding-right: 5.5%;
 
   @media (max-width: 800px) {
-    padding: 90px 4%;
+    padding-left: 6.5%;
+    padding-right: 6.5%;
   }
 
   @media (max-width: 500px) {
-    padding: 70px 3%;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    padding-left: 5.5%;
+    padding-right: 5.5%;
   }
 `;
 
@@ -20,10 +27,6 @@ export const TitlePattern = css`
   font-weight: 400;
   color: #ffffff;
   margin: 0 0 23px;
-
-  @media (max-width: 800px) {
-    margin: 0 0 23px;
-  }
 
   @media (max-width: 500px) {
     font-size: 18px;
@@ -36,7 +39,15 @@ export const InformationPattern = css`
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #dadada;
-  padding: 66px 0 0 0;
+  padding: 70px 0 0 0;
+
+  @media (max-width: 800px) {
+    padding: 70px 0 0 0;
+  }
+
+  @media (max-width: 500px) {
+    padding: 60px 0 0 0;
+  }
 `;
 
 export const HoverLink = css`

@@ -5,6 +5,7 @@ import {
   Edit,
   Error,
   Exit,
+  FormWithoutButtonPattern,
   Greeting,
   Input,
   InputContainer,
@@ -40,7 +41,7 @@ function Profile() {
 
   return (
     <ProfileContainer>
-      <div>
+      <FormWithoutButtonPattern>
         <Greeting>Привет, Евгения!</Greeting>
         <Inputs>
           <InputContainer>
@@ -62,7 +63,7 @@ function Profile() {
             />
           </InputContainer>
         </Inputs>
-      </div>
+      </FormWithoutButtonPattern>
 
       {changed ? (
         <Buttons>

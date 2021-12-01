@@ -18,8 +18,8 @@
   <a href="https://ru.wikipedia.org/wiki/REST"><img src="readme/icon-api.svg" alt="REST API"></a> -->
     <img src="readme/icon-whitespace-5px.svg"/>
   <a href="https://ru.reactjs.org/"><img src="readme/icon-react.svg" alt="React"></a>
-    <!-- <img src="readme/icon-whitespace-5px.svg"/>
-  <a href="https://formik.org/"><img src="readme/icon-formik.svg" alt="Formik"></a> -->
+    <img src="readme/icon-whitespace-5px.svg"/>
+  <a href="https://formik.org/"><img src="readme/icon-formik.svg" alt="Formik"></a>
     <img src="readme/icon-whitespace-5px.svg"/>
   <a href="https://emotion.sh/docs/introduction"><img src="readme/icon-emotion.svg" alt="Emotion"></a>
 </p>
@@ -40,7 +40,9 @@
 :small_red_triangle: при нажатии кнопки `Редактировать` в разделе `Аккаунт` кнопки `Редактировать` и `Выйти из аккаунта` меняются на кнопку `Сохранить`, после нажатия на неё, она меняется на неактивную и демонстрируется предупреждение об ошибке, при нажатии на кнопку `Выйти из аккаунта`, открывается страница `Войти`;  
 :small_red_triangle: для демонстрации сообщений об ошибках (после выполнения запроса) на страницах авторизации и регистрации необходимо нажать кнопки `1`, `2` и/или `3`;  
 
+- лайф валидация с _[Formik](https://formik.org/)_ и _[Yup](https://github.com/jquense/yup)_;
 - используется css-in-js библиотека _[Emotion](https://emotion.sh/docs/introduction)_;
+- проработан UX (настроены hover'ы, состояние фокуса в инпутах);
 - [страница задеплоена на GHPages](https://beagle-elgaeb.github.io/edu-movies-explorer-frontend/);
 - страница адаптируется с контрольными точками: 320px, 500px, 800px, 1280px.
 
@@ -60,11 +62,14 @@
 
 ### Как использовать
 
+Локальный запуск фронтенда:  
+`npm run start`
+
 Сборка фронтенда:  
 `npm run build`
 
-Локальный запуск фронтенда:  
-`npm run start`
+Деплой на GH Pages:  
+`npm run deploy`
 
 ## Связаться со мной
 

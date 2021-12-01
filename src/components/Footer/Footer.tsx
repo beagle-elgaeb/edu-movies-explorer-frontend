@@ -13,7 +13,7 @@ function Footer() {
     <FooterContainer>
       <Title>Учебный проект Яндекс.Практикум х BeatFilm.</Title>
       <LinksAndYear>
-        <YearBefore>© 2021</YearBefore>
+        <YearBefore>©2021</YearBefore>
         <Links>
           <Link
             href="https://practicum.yandex.ru/web/"
@@ -36,7 +36,7 @@ function Footer() {
           >
             Instagram
           </Link>
-          <YearAfter>© 2021</YearAfter>
+          <YearAfter>©2021</YearAfter>
         </Links>
       </LinksAndYear>
     </FooterContainer>

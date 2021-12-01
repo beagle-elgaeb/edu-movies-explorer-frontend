@@ -1,14 +1,27 @@
 import styled from "@emotion/styled/macro";
 import photoMe from "../../images/photo-me.jpg";
 import {
+  BlockPattern,
   HoverLink,
   InformationPattern,
-  PaddingsPattern,
   TitlePattern,
 } from "../Blocks.style";
 
 export const AboutMeContainer = styled.div`
-  ${PaddingsPattern}
+  ${BlockPattern}
+  padding-top: 110px;
+  padding-bottom: 98px;
+
+  @media (max-width: 800px) {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  @media (max-width: 500px) {
+    padding-bottom: 70px;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+  }
 `;
 
 export const Title = styled.h3`
@@ -17,6 +30,10 @@ export const Title = styled.h3`
 
 export const AboutAndPhoto = styled.div`
   ${InformationPattern}
+
+  @media (max-width: 800px) {
+    padding: 67px 0 0 0;
+  }
 `;
 
 export const About = styled.div`
@@ -113,7 +130,7 @@ export const PhotoBefore = styled.div`
     background: url(${photoMe});
     background-size: cover;
     border-radius: 10px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 42px;
   }
 
   @media (max-width: 400px) {

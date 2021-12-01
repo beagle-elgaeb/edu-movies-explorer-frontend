@@ -1,19 +1,19 @@
 import { css } from "@emotion/react";
-import { PaddingsPattern } from "./Blocks.style";
+import { BlockPattern } from "./Blocks.style";
 
 export const ContainerPattern = css`
-  ${PaddingsPattern}
-  padding-top: 0;
-  padding-bottom: 80px;
+  ${BlockPattern}
+  padding-top: 50px;
+  padding-bottom: 50px;
 
   @media (max-width: 800px) {
-    padding-top: 0;
-    padding-bottom: 80px;
+    padding: 60px 4% 82px;
   }
 
   @media (max-width: 500px) {
-    padding-top: 0;
-    padding-bottom: 80px;
+    padding-bottom: 100px;
+    padding-left: 3.3%;
+    padding-right: 3.3%;
   }
 `;
 

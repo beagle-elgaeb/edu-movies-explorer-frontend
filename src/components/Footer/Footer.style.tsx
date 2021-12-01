@@ -1,20 +1,18 @@
 import styled from "@emotion/styled/macro";
-import { HoverLink, PaddingsPattern } from "../Blocks.style";
+import { BlockPattern, HoverLink } from "../Blocks.style";
 
 export const FooterContainer = styled.footer`
-  ${PaddingsPattern}
-
-  padding-top: 79px;
-  padding-bottom: 0;
+  ${BlockPattern}
+  padding-top: 109px;
 
   @media (max-width: 800px) {
     padding-top: 79px;
-    padding-bottom: 0;
+    padding-left: 4.9%;
+    padding-right: 4.9%;
   }
 
   @media (max-width: 500px) {
-    padding-top: 79px;
-    padding-bottom: 0;
+    padding: 60px 3% 0;
   }
 `;
 
@@ -30,6 +28,7 @@ export const Title = styled.h5`
   @media (max-width: 500px) {
     font-size: 12px;
     line-height: 15px;
+    margin: 0 auto 21px;
   }
 `;
 

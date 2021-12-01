@@ -26,7 +26,7 @@ export const FrameFromMovie = styled.div<{ frame: string }>`
   }
 
   @media (max-width: 500px) {
-    height: 168px;
+    height: 167px;
   }
 `;
 
@@ -35,7 +35,7 @@ export const NameMovieAndCheck = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 14px auto 10px;
+  margin: 14px auto 11px;
 `;
 
 export const NameMovie = styled.h2`
@@ -47,7 +47,7 @@ export const NameMovie = styled.h2`
 `;
 
 export const DurationMovie = styled.p`
-  width: 91%;
+  width: 92%;
   font-size: 11px;
   line-height: 13px;
   font-weight: 400;

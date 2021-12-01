@@ -1,14 +1,12 @@
 import styled from "@emotion/styled/macro";
-import { HoverLink, PaddingsPattern } from "../Blocks.style";
+import { BlockPattern, HoverLink } from "../Blocks.style";
 
 export const PortfolioContainer = styled.div`
-  ${PaddingsPattern}
-
-  padding-top: 0;
-  padding-bottom: 125px;
+  ${BlockPattern}
+  padding-bottom: 75px;
 
   @media (max-width: 800px) {
-    padding-top: 0;
+    padding-bottom: 70px;
   }
 
   @media (max-width: 500px) {
@@ -22,6 +20,11 @@ export const Title = styled.h3`
   font-weight: 400;
   color: #8b8b8b;
   margin: 0 0 30px;
+
+  @media (max-width: 500px) {
+    font-size: 14px;
+    margin: 0 0 21px;
+  }
 `;
 
 export const EduWorkLink = styled.div`

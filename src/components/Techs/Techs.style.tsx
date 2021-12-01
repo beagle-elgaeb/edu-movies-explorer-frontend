@@ -1,9 +1,16 @@
 import styled from "@emotion/styled/macro";
-import { HoverButton, PaddingsPattern, TitlePattern } from "../Blocks.style";
+import { BlockPattern, HoverButton, TitlePattern } from "../Blocks.style";
 
 export const TechsContainer = styled.div`
-  ${PaddingsPattern}
+  ${BlockPattern}
   background: #272727;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  @media (max-width: 800px) {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
 `;
 
 export const Title = styled.h3`
@@ -11,7 +18,7 @@ export const Title = styled.h3`
 `;
 
 export const Technologies = styled.div`
-  border-top: 1px solid #dadada;
+  border-top: 1px solid #ffffff;
   padding: 90px 0 0 0;
 
   @media (max-width: 800px) {
@@ -19,6 +26,8 @@ export const Technologies = styled.div`
   }
 
   @media (max-width: 500px) {
+    border-top: 1px solid #000000;
+    padding: 60px 0 0 0;
   }
 `;
 

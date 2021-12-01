@@ -13,7 +13,7 @@ export const NotFoundPageContainer = styled.div`
   padding: 246px 0 60px;
 
   @media (max-width: 800px) {
-    padding: 408px 0 222px;
+    padding: 408px 0 221px;
   }
 
   @media (max-width: 500px) {

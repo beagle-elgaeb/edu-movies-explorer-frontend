@@ -3,14 +3,15 @@ import { HoverButton } from "../Blocks.style";
 
 export const SearchFormContainer = styled.div`
   width: 100%;
-  padding: 70px 0 47px;
+  box-sizing: border-box;
+  padding: 7px 0 47px;
 
   @media (max-width: 800px) {
-    padding: 80px 0 60px;
+    padding-bottom: 60px;
   }
 
   @media (max-width: 500px) {
-    padding: 84px 0 50px;
+    padding: 6px 1% 50px;
   }
 `;
 
@@ -23,7 +24,7 @@ export const InputContainer = styled.div`
   margin: 0 0 32px;
 
   @media (max-width: 800px) {
-    margin: 0 0 29px;
+    margin: 0 0 30px;
   }
 
   @media (max-width: 500px) {

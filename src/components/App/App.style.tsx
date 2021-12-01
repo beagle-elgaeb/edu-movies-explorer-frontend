@@ -7,7 +7,7 @@ export const Body = styled.div`
   flex-direction: column;
   justify-content: space-between;
   max-width: 1280px;
-  min-width: 320px;
+  min-width: 315px;
   background: #202020;
   margin: 0 auto;
   box-shadow: 0 0 10px 1px #000000;

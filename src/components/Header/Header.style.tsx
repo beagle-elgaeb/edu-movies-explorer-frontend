@@ -1,46 +1,23 @@
 import styled from "@emotion/styled/macro";
-import { Link } from "react-router-dom";
-import { HoverButton, HoverLink, PaddingsPattern } from "../Blocks.style";
+import { Link, NavLink } from "react-router-dom";
+import { BlockPattern, HoverButton, HoverLink } from "../Blocks.style";
 
 export const HeaderContainer = styled.header<{ authorized: boolean }>`
-  ${PaddingsPattern}
+  ${BlockPattern}
   height: 74px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: ${({ authorized }) => (authorized ? "transparent" : "#073042")};
-  padding-top: 0;
-  padding-bottom: 0;
 
   @media (max-width: 800px) {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-left: 4%;
+    padding-right: 4%;
   }
 
   @media (max-width: 500px) {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0 4.5%;
   }
-`;
-
-export const Logo = styled(Link)`
-  height: 38px;
-  width: 38px;
-  display: flex;
-  justify-content: center;
-  background: #3ddc84;
-  border-radius: 99em;
-`;
-
-export const LogoIcon = styled.div`
-  height: 19px;
-  width: 20px;
-  background: #ffffff;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  margin: 11px 0 0 0;
 `;
 
 export const LinksBlock = styled.div`
@@ -49,8 +26,35 @@ export const LinksBlock = styled.div`
 `;
 
 export const NavBlock = styled.div`
+  display: flex;
+  list-style-type: none;
+  margin: 0 0 0 65px;
+  padding: 0;
+
   @media (max-width: 800px) {
     display: none;
+  }
+`;
+
+export const Item = styled.li`
+  margin: 0 16px 0 0;
+
+  :last-child {
+    margin: 0;
+  }
+`;
+
+export const LinkMenu = styled(NavLink)`
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #ffffff;
+
+  ${HoverLink}
+
+  &.active {
+    font-weight: 500;
   }
 `;
 
@@ -148,15 +152,15 @@ export const MenuIcon = styled.div`
   }
 
   @media (max-width: 500px) {
-    height: 22px;
-    width: 20px;
+    height: 24px;
+    width: 22px;
     background: repeating-linear-gradient(
       0deg,
       #ffffff,
       #ffffff 2px,
       #ffffff00 2px,
-      #ffffff00 10px,
-      #ffffff 10px
+      #ffffff00 9px,
+      #ffffff 9px
     );
   }
 `;

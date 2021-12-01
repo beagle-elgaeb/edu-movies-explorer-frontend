@@ -8,6 +8,7 @@ import {
   ButtonAndText,
   Error,
   ErrorContainer,
+  FormWithoutButton,
   Inputs,
   LinkLogin,
   RegisterContainer,
@@ -71,7 +72,7 @@ function Register() {
           При регистрации пользователя произошла ошибка.
         </Error>
       </ErrorContainer>
-      <div>
+      <FormWithoutButton>
         <Logo />
         <Title>Добро пожаловать!</Title>
         <Inputs>
@@ -94,7 +95,7 @@ function Register() {
             errorText={getError("password")}
           />
         </Inputs>
-      </div>
+      </FormWithoutButton>
       <ButtonAndText>
         <Button disabled={!formik.isValid}>Зарегистрироваться</Button>
         <Text>

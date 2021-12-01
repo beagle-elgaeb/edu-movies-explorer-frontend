@@ -1,25 +1,34 @@
 import styled from "@emotion/styled/macro";
-import { HoverButton, HoverLink } from "../Blocks.style";
+import { BlockPattern, HoverButton, HoverLink } from "../Blocks.style";
 
 export const ProfileContainer = styled.form`
-  width: 100%;
-  box-sizing: border-box;
+  ${BlockPattern}
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 74px 0 70px;
+  padding-top: 74px;
+  padding-bottom: 70px;
 
   @media (max-width: 800px) {
     height: calc(100vh - 74px);
-    justify-content: center;
-    padding: 0;
+    justify-content: space-between;
+    padding-top: 236px;
+    padding-bottom: 266px;
   }
 
   @media (max-width: 500px) {
-    justify-content: space-between;
-    padding: 70px 0 40px;
+    padding-bottom: 39px;
+    padding-left: 9.5%;
+    padding-right: 9.5%;
   }
+`;
+
+export const FormWithoutButtonPattern = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Greeting = styled.h3`
@@ -35,12 +44,12 @@ export const Greeting = styled.h3`
   }
 
   @media (max-width: 500px) {
-    margin: 0 0 63px;
+    margin: 0 0 64px;
   }
 `;
 
 export const Inputs = styled.div`
-  width: 100vw;
+  width: 100%;
   margin: 0 0 205px;
 
   @media (max-width: 800px) {
@@ -60,8 +69,7 @@ export const InputContainer = styled.div`
   margin: 0 auto;
 
   @media (max-width: 500px) {
-    width: 85%;
-    min-width: 260px;
+    width: 100%;
   }
 
   :last-child {
