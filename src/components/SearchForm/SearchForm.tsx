@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import Preloader from "../Preloader/Preloader";
 import {
   Button,
+  ButtonIcon,
   Input,
   InputContainer,
   SearchFormContainer,
@@ -14,26 +16,33 @@ type PropsType = {
 };
 
 function SearchForm({ search, handleSearch }: PropsType) {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  function handleChangeSearchQuery(evt: React.FormEvent<HTMLInputElement>) {
-    setSearchQuery(evt.currentTarget.value);
-  }
+  const formik = useFormik({
+    initialValues: {
+      movie: "",
+    },
+    validationSchema: Yup.object({
+      movie: Yup.string().required(),
+    }),
+    onSubmit: () => {},
+  });
 
   return (
     <SearchFormContainer>
       <InputContainer>
         <Input
-          value={searchQuery}
           type="text"
           placeholder="Фильм"
-          onChange={handleChangeSearchQuery}
+          {...formik.getFieldProps("movie")}
         />
         {search ? (
           <Preloader />
         ) : (
-          <Button type="button" onClick={handleSearch}>
-            &#8250;
+          <Button
+            type="button"
+            onClick={handleSearch}
+            disabled={!formik.isValid}
+          >
+            <ButtonIcon></ButtonIcon>
           </Button>
         )}
       </InputContainer>

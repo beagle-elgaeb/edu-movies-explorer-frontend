@@ -6,6 +6,7 @@ export const MoviesCardContainer = styled.li`
   flex-direction: column;
   background: #222222;
   border-radius: 10px;
+  box-shadow: 0px 16px 24px #0000000d;
   list-style: none;
 
   :hover {

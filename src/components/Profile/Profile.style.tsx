@@ -124,9 +124,15 @@ export const Buttons = styled.div`
   }
 `;
 
-export const Error = styled.span<{ visible: boolean }>`
+export const Errors = styled.div`
   position: absolute;
   top: -33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Error = styled.span<{ visible: boolean }>`
   display: ${({ visible }) => (visible ? "inline" : "none")};
   font-size: 11px;
   line-height: 13px;

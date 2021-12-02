@@ -1,4 +1,4 @@
-import globe from "../../images/globe.svg";
+import globe from "../../images/icon-globe.svg";
 import {
   GlobeAfter,
   GlobeBefore,

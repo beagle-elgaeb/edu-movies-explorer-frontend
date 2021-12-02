@@ -1,9 +1,12 @@
+import { useFormik } from "formik";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 import {
   Buttons,
   Edit,
   Error,
+  Errors,
   Exit,
   FormWithoutButtonPattern,
   Greeting,
@@ -18,18 +21,8 @@ import {
 function Profile() {
   let navigate = useNavigate();
 
-  const [name, setName] = useState("Евгения");
-  const [email, setEmail] = useState("be@ya.ru");
   const [changed, setChanged] = useState(false);
   const [error, setError] = useState(false);
-
-  function handleChangeName(evt: React.FormEvent<HTMLInputElement>) {
-    setName(evt.currentTarget.value);
-  }
-
-  function handleChangeEmail(evt: React.FormEvent<HTMLInputElement>) {
-    setEmail(evt.currentTarget.value);
-  }
 
   function handleChangeError() {
     setError(!error);
@@ -39,6 +32,20 @@ function Profile() {
     setChanged(true);
   }
 
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(2, "Имя не должно быть короче 2 символов")
+        .max(60, "Имя не должно быть длиннее 60 символов"),
+      email: Yup.string().email("Некорректный e-mail"),
+    }),
+    onSubmit: () => {},
+  });
+
   return (
     <ProfileContainer>
       <FormWithoutButtonPattern>
@@ -47,19 +54,17 @@ function Profile() {
           <InputContainer>
             <Label>Имя</Label>
             <Input
-              value={name}
               type="text"
               placeholder="Имя"
-              onChange={handleChangeName}
+              {...formik.getFieldProps("name")}
             />
           </InputContainer>
           <InputContainer>
             <Label>E-mail</Label>
             <Input
-              value={email}
               type="email"
               placeholder="E-mail"
-              onChange={handleChangeEmail}
+              {...formik.getFieldProps("email")}
             />
           </InputContainer>
         </Inputs>
@@ -68,14 +73,10 @@ function Profile() {
       {changed ? (
         <Buttons>
           {error ? (
-            <>
-              <Error visible={false}>
-                Пользователь с таким email уже существует.
-              </Error>
-              <Error visible={true}>
-                При обновлении профиля произошла ошибка.
-              </Error>
-            </>
+            <Errors>
+              <Error visible={true}>{formik.errors.name}</Error>
+              <Error visible={false}>{formik.errors.email}</Error>
+            </Errors>
           ) : (
             <></>
           )}

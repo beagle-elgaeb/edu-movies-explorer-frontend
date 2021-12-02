@@ -1,4 +1,5 @@
 import styled from "@emotion/styled/macro";
+import arrow from "../../images/icon-arrow.svg";
 import { HoverButton } from "../Blocks.style";
 
 export const SearchFormContainer = styled.div`
@@ -77,11 +78,19 @@ export const Button = styled.button`
   font-weight: 500;
   color: #ffffff;
   outline: none;
-  padding: 0 0 4px 2px;
+  padding: 0;
 
   ${HoverButton}
 
   @media (max-width: 500px) {
     bottom: 9px;
   }
+`;
+
+export const ButtonIcon = styled.div`
+  height: 12px;
+  width: 6px;
+  background: url(${arrow});
+  background-size: cover;
+  margin: auto;
 `;

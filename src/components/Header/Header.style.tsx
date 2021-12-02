@@ -1,4 +1,5 @@
 import styled from "@emotion/styled/macro";
+import burger from "../../images/icon-burger.svg";
 import { Link, NavLink } from "react-router-dom";
 import { BlockPattern, HoverButton, HoverLink } from "../Blocks.style";
 
@@ -140,27 +141,12 @@ export const MenuIcon = styled.div`
     height: 23px;
     width: 28px;
     display: block;
-    background: repeating-linear-gradient(
-      0deg,
-      #ffffff,
-      #ffffff 3px,
-      #ffffff00 3px,
-      #ffffff00 10px,
-      #ffffff 10px
-    );
+    background: url(${burger});
     margin: auto;
   }
 
   @media (max-width: 500px) {
     height: 24px;
     width: 22px;
-    background: repeating-linear-gradient(
-      0deg,
-      #ffffff,
-      #ffffff 2px,
-      #ffffff00 2px,
-      #ffffff00 9px,
-      #ffffff 9px
-    );
   }
 `;
