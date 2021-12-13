@@ -1,5 +1,5 @@
 import styled from "@emotion/styled/macro";
-import arrow from "../../images/icon-arrow.svg";
+import arrow from "../../images/icon-search-arrow.svg";
 import { HoverButton } from "../Blocks.style";
 
 export const SearchFormContainer = styled.div`
