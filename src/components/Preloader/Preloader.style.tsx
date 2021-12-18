@@ -43,15 +43,14 @@ const preloaderInsideBlue = keyframes`
 `;
 
 export const PreloaderContainer = styled.div`
-  height: 34px;
-  width: 34px;
+  width: 100px;
+  height: 100px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  right: 0;
-  bottom: 13px;
   padding: 0 auto;
+  margin: 0 auto;
 
   @media (max-width: 500px) {
     bottom: 9px;
@@ -59,19 +58,19 @@ export const PreloaderContainer = styled.div`
 `;
 
 export const PreloaderRound = styled.span`
-  height: 34px;
-  width: 34px;
+  width: 100px;
+  height: 100px;
   position: absolute;
   top: 0;
   left: 0;
-  background: #4285f4;
+  background: #202020;
   border-radius: 99em;
 
   ::after,
   ::before {
     content: "";
-    height: 34px;
-    width: 34px;
+    width: 100px;
+    height: 100px;
     position: absolute;
     top: 0;
     left: 0;
@@ -85,7 +84,7 @@ export const PreloaderRound = styled.span`
 
   ::before {
     z-index: 10;
-    background: #4285f4;
+    background: #202020;
     animation: ${preloaderInsideBlue} 1s ease-in-out infinite;
   }
 `;

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { MovieType } from "../../utils/types";
 import {
   Check,
@@ -11,28 +10,33 @@ import {
   NameMovieAndCheck,
 } from "./MoviesCard.style";
 
-function MoviesCard({ movie }: { movie: MovieType }) {
-  const [checked, setChecked] = useState(movie.saved);
-
-  function handleCheck() {
-    setChecked(!checked);
-  }
-
+function MoviesCard({
+  movie,
+  isSaved,
+  handleSave,
+}: {
+  movie: MovieType;
+  handleSave: (movieId: number) => void;
+  isSaved?: boolean;
+}) {
   return (
     <MoviesCardContainer>
-      <FrameFromMovie frame={movie.frame}></FrameFromMovie>
+      <FrameFromMovie image={movie.image}></FrameFromMovie>
       <NameMovieAndCheck>
-        <NameMovie>{movie.name}</NameMovie>
+        <NameMovie>{movie.nameRU}</NameMovie>
         <CheckLabel>
           <CheckInput
             type="checkbox"
-            checked={checked}
-            onChange={handleCheck}
+            checked={isSaved}
+            onChange={() => handleSave(movie.id)}
           ></CheckInput>
           <Check></Check>
         </CheckLabel>
       </NameMovieAndCheck>
-      <DurationMovie>{movie.duration}</DurationMovie>
+      <DurationMovie>
+        {Math.floor(movie.duration / 60)}ч
+        {movie.duration - Math.floor(movie.duration / 60) * 60}м
+      </DurationMovie>
     </MoviesCardContainer>
   );
 }

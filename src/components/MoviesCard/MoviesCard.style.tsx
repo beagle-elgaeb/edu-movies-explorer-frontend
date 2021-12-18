@@ -14,10 +14,10 @@ export const MoviesCardContainer = styled.li`
   }
 `;
 
-export const FrameFromMovie = styled.div<{ frame: string }>`
+export const FrameFromMovie = styled.div<{ image: string }>`
   height: 151px;
   width: 100%;
-  background: url(${({ frame }) => frame});
+  background: url(${({ image }) => `https://api.nomoreparties.co${image}`});
   background-size: cover;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;

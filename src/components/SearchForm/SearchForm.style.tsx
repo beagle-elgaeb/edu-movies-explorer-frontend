@@ -2,7 +2,7 @@ import styled from "@emotion/styled/macro";
 import arrow from "../../images/icon-search-arrow.svg";
 import { HoverButton } from "../Blocks.style";
 
-export const SearchFormContainer = styled.div`
+export const SearchFormContainer = styled.form`
   width: 100%;
   box-sizing: border-box;
   padding: 7px 0 47px;
@@ -61,6 +61,16 @@ export const Input = styled.input`
     font-size: 18px;
     line-height: 22px;
   }
+`;
+
+export const Error = styled.span`
+  position: absolute;
+  left: 10px;
+  bottom: -20px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #ee3465;
 `;
 
 export const Button = styled.button`
