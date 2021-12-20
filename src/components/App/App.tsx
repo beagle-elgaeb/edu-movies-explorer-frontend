@@ -1,13 +1,14 @@
 import produce from "immer";
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import {
   getFavoredMovies,
+  getProfileData,
   postFavoredCards,
   removeFavoredCards,
 } from "../../utils/MainApi";
 import { getMovies } from "../../utils/MoviesApi";
-import { MovieApiType, MovieType } from "../../utils/types";
+import { MovieApiType, MovieType, User } from "../../utils/types";
 import Login from "../Login/Login";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -17,24 +18,33 @@ import Register from "../Register/Register";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import { Body } from "./App.style";
 import { Layout, LayoutWithoutHeader } from "./AppLayout";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState();
   const [movies, setMovies] = useState<MovieType[]>();
   const [favoredMovies, setFavoredMovies] = useState<MovieType[]>();
   const [load, setLoad] = useState(false);
   const [error, setError] = useState(false);
 
-  const localStorageKey = "favoredMovies";
+  useEffect(() => {
+    const auth = localStorage.getItem("profile");
+
+    if (!auth) {
+      return;
+    }
+
+    setCurrentUser(JSON.parse(auth));
+  }, []);
 
   async function loadMovies() {
-    const localStorageKey = "movies";
-    const savedMovies = localStorage.getItem(localStorageKey);
+    const savedMovies = localStorage.getItem("movies");
 
     if (savedMovies) {
       try {
         return JSON.parse(savedMovies);
       } catch {
-        localStorage.removeItem(localStorageKey);
+        localStorage.removeItem("movies");
       }
     }
 
@@ -42,10 +52,6 @@ function App() {
       setError(false);
 
       const res = await getMovies();
-
-      if (!res) {
-        return;
-      }
 
       const apiLoadedMovies = res.map((item: MovieApiType) => {
         return {
@@ -57,7 +63,7 @@ function App() {
         };
       });
 
-      localStorage.setItem(localStorageKey, JSON.stringify(apiLoadedMovies));
+      localStorage.setItem("movies", JSON.stringify(apiLoadedMovies));
 
       return apiLoadedMovies;
     } catch (err) {
@@ -79,14 +85,18 @@ function App() {
   }
 
   useEffect(() => {
+    if (!currentUser) {
+      return;
+    }
+
     async function loadFavoredMovies() {
-      const savedMovies = localStorage.getItem(localStorageKey);
+      const savedMovies = localStorage.getItem("favoredMovies");
 
       if (savedMovies) {
         try {
           return JSON.parse(savedMovies);
         } catch {
-          localStorage.removeItem(localStorageKey);
+          localStorage.removeItem("favoredMovies");
         }
       }
 
@@ -94,10 +104,6 @@ function App() {
         setError(false);
 
         const res = await getFavoredMovies();
-
-        if (!res) {
-          return;
-        }
 
         const apiLoadedMovies = res.map((item): MovieType => {
           return {
@@ -110,7 +116,7 @@ function App() {
         });
 
         setFavoredMovies(apiLoadedMovies);
-        localStorage.setItem(localStorageKey, JSON.stringify(apiLoadedMovies));
+        localStorage.setItem("favoredMovies", JSON.stringify(apiLoadedMovies));
       } catch (err) {
         setError(true);
         console.log(err);
@@ -118,7 +124,7 @@ function App() {
     }
 
     loadFavoredMovies();
-  }, [favoredMovies]);
+  }, [currentUser]);
 
   async function handleSaveMovie(movieId: number) {
     const favoredMovie = favoredMovies?.find(
@@ -138,7 +144,7 @@ function App() {
 
         setFavoredMovies(newState);
 
-        localStorage.setItem(localStorageKey, JSON.stringify(newState));
+        localStorage.setItem("favoredMovies", JSON.stringify(newState));
       } catch (err) {
         console.log(err);
       }
@@ -166,53 +172,88 @@ function App() {
 
         setFavoredMovies(newState);
 
-        localStorage.setItem(localStorageKey, JSON.stringify(newState));
+        localStorage.setItem("favoredMovies", JSON.stringify(newState));
       } catch (err) {
         console.log(err);
       }
     }
   }
 
+  async function loadProfile() {
+    try {
+      const user = await getProfileData();
+
+      setCurrentUser(user);
+
+      localStorage.setItem("profile", JSON.stringify(user));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   //Говняное говно
 
   return (
-    <Body>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Main />} />
-          <Route
-            path="movies"
-            element={
-              <Movies
-                movies={movies ?? []}
-                favoredMovies={favoredMovies ?? []}
-                error={error}
-                load={load}
-                searchMovies={searchMovies}
-                handleSave={handleSaveMovie}
+    <CurrentUserContext.Provider value={currentUser}>
+      <Body>
+        <Routes>
+          <Route path="/" element={<Layout isLogined={!!currentUser} />}>
+            <Route index element={<Main />} />
+
+            <Route element={<AppAuth currentUser={currentUser} />}>
+              <Route
+                path="movies"
+                element={
+                  <Movies
+                    movies={movies ?? []}
+                    favoredMovies={favoredMovies ?? []}
+                    error={error}
+                    load={load}
+                    searchMovies={searchMovies}
+                    handleSave={handleSaveMovie}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="saved-movies"
-            element={
-              <SavedMovies
-                movies={favoredMovies ?? []}
-                error={error}
-                handleSave={handleSaveMovie}
+              <Route
+                path="saved-movies"
+                element={
+                  <SavedMovies
+                    movies={favoredMovies ?? []}
+                    error={error}
+                    handleSave={handleSaveMovie}
+                  />
+                }
               />
-            }
-          />
-          <Route path="profile" element={<Profile />} />
-        </Route>
-        <Route path="/" element={<LayoutWithoutHeader />}>
-          <Route path="signin" element={<Login />} />
-          <Route path="signup" element={<Register />} />
-        </Route>
-        <Route path="*" element={<ErrorPopup />} />
-      </Routes>
-    </Body>
+              <Route path="profile" element={<Profile />} />
+            </Route>
+          </Route>
+
+          <Route path="/" element={<LayoutWithoutHeader />}>
+            <Route element={<AppNotAuth currentUser={currentUser} />}>
+              <Route
+                path="signin"
+                element={<Login loadProfile={loadProfile} />}
+              />
+              <Route
+                path="signup"
+                element={<Register loadProfile={loadProfile} />}
+              />
+            </Route>
+          </Route>
+
+          <Route path="*" element={<ErrorPopup />} />
+        </Routes>
+      </Body>
+    </CurrentUserContext.Provider>
   );
 }
 
 export default App;
+
+function AppAuth({ currentUser }: { currentUser: User | undefined }) {
+  return <>{currentUser ? <Outlet /> : <Navigate to="/signin" />}</>;
+}
+
+function AppNotAuth({ currentUser }: { currentUser: User | undefined }) {
+  return <>{currentUser ? <Navigate to="/" /> : <Outlet />}</>;
+}

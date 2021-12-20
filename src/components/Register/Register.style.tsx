@@ -4,7 +4,6 @@ import {
   ButtonAndTextPattern,
   ButtonPattern,
   ContainerPattern,
-  ErrorContainerPattern,
   ErrorPattern,
   FormWithoutButtonPattern,
   InputsPattern,
@@ -16,14 +15,6 @@ import { HoverButton, HoverLink } from "../Blocks.style";
 
 export const RegisterContainer = styled.form`
   ${ContainerPattern}
-`;
-
-export const ErrorContainer = styled.div`
-  ${ErrorContainerPattern}
-`;
-
-export const Error = styled.span<{ visible: boolean }>`
-  ${ErrorPattern}11
 `;
 
 export const FormWithoutButton = styled.div`
@@ -40,6 +31,10 @@ export const Inputs = styled.div`
 
 export const ButtonAndText = styled.div`
   ${ButtonAndTextPattern}
+`;
+
+export const Error = styled.span`
+  ${ErrorPattern};
 `;
 
 export const Button = styled.button<{ disabled: boolean }>`

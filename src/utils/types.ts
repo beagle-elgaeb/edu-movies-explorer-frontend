@@ -26,3 +26,7 @@ export type LinkType = {
   to: string;
   text: string;
 };
+
+export type User = {
+  name: string;
+};

@@ -2,8 +2,58 @@ import { MovieMainApiType } from "./types";
 
 export const BASE_URL = "http://localhost:3000";
 
+const jsonHeaders = {
+  "Content-Type": "application/json",
+};
+
+export async function register({
+  name,
+  email,
+  password,
+}: {
+  name: string;
+  email: string;
+  password: string;
+}) {
+  const user = await fetch(`${BASE_URL}/signup`, {
+    method: "POST",
+    headers: jsonHeaders,
+    body: JSON.stringify({ name, email, password }),
+    credentials: "include",
+  });
+
+  return handleResult(user);
+}
+
+export async function authorize({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) {
+  const user = await fetch(`${BASE_URL}/signin`, {
+    method: "POST",
+    headers: jsonHeaders,
+    body: JSON.stringify({ email, password }),
+    credentials: "include",
+  });
+
+  return handleResult(user);
+}
+
+export async function getProfileData() {
+  const user = await fetch(`${BASE_URL}/users/me`, {
+    credentials: "include",
+  });
+
+  return handleResult(user);
+}
+
 export async function getFavoredMovies() {
-  const data = await fetch(`${BASE_URL}/movies`);
+  const data = await fetch(`${BASE_URL}/movies`, {
+    credentials: "include",
+  });
 
   if (!data.ok) {
     throw new Error(`Статуc ошибки: ${data.status}`);
@@ -17,9 +67,7 @@ export async function getFavoredMovies() {
 export async function postFavoredCards(movie: MovieMainApiType) {
   const data = await fetch(`${BASE_URL}/movies`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: jsonHeaders,
     credentials: "include",
     body: JSON.stringify(movie),
   });
@@ -41,7 +89,7 @@ async function handleResult(data: Response) {
     throw new Error(`Статуc ошибки: ${data.status}`);
   }
 
-  const main = await data.json();
+  const mainData = await data.json();
 
-  return main;
+  return mainData;
 }

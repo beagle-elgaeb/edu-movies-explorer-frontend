@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { linksHeader } from "../../utils/lists";
 import Logo from "../Logo/Logo";
 import {
@@ -14,29 +13,17 @@ import {
   NavBlock,
 } from "./Header.style";
 
-function Header({ onMenuClick }: { onMenuClick: () => void }) {
-  // Временно, для наблюдения всех состояний хедера ---------------------------
-  // Enter переключает залог - незалог ----------------------------------------
-
-  const [authorized, setAuthorized] = useState(false);
-
-  useEffect(() => {
-    document.addEventListener("keydown", onKeydown);
-    return () => document.removeEventListener("keydown", onKeydown);
-  }, []);
-
-  function onKeydown({ key }: { key: string }) {
-    if (key === "Enter") {
-      setAuthorized((authorized) => !authorized);
-    }
-  }
-
-  // --------------------------------------------------------------------------
-
+function Header({
+  onMenuClick,
+  isLogined,
+}: {
+  onMenuClick: () => void;
+  isLogined: boolean;
+}) {
   return (
     <>
-      {authorized ? (
-        <HeaderContainer authorized={authorized}>
+      {isLogined ? (
+        <HeaderContainer authorized={isLogined}>
           <Logo />
           <LinksBlock>
             <NavBlock>
@@ -58,7 +45,7 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
           <LinkAccount to="/profile">Аккаунт</LinkAccount>
         </HeaderContainer>
       ) : (
-        <HeaderContainer authorized={authorized}>
+        <HeaderContainer authorized={isLogined}>
           <Logo />
           <LinksBlock>
             <LinkSignin to="/signup">Регистрация</LinkSignin>

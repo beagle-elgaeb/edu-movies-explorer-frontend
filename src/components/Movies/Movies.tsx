@@ -1,7 +1,7 @@
 import useEvent from "@react-hook/event";
 import { useThrottle } from "@react-hook/throttle";
 import { useState } from "react";
-import { MovieMainApiType, MovieType } from "../../utils/types";
+import {  MovieType } from "../../utils/types";
 import { getPagination } from "../../utils/utils";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";

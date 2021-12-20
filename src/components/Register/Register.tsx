@@ -1,13 +1,14 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { authorize, register } from "../../utils/MainApi";
 import InputAuth from "../InputAuth/InputAuth";
 import Logo from "../Logo/Logo";
 import {
   Button,
   ButtonAndText,
   Error,
-  ErrorContainer,
   FormWithoutButton,
   Inputs,
   LinkLogin,
@@ -16,7 +17,11 @@ import {
   Title,
 } from "./Register.style";
 
-function Register() {
+function Register({ loadProfile }: { loadProfile: () => void }) {
+  let navigate = useNavigate();
+
+  const [error, setError] = useState("");
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -36,42 +41,28 @@ function Register() {
         .max(15, "Пароль не должен быть длиннее 15 символов")
         .required("Введите, пожалуйста, пароль"),
     }),
-    onSubmit: () => {},
-  });
+    onSubmit: async (values) => {
+      try {
+        await register(values);
+        await authorize({ email: values.email, password: values.password });
+        await loadProfile();
 
-  // Временно, для наблюдения всех сообщений об ошибке ------------------------
-  // (нажатие клавиш 1 и 2 включает и выключает ошибки) -----------------------
+        navigate("/movies");
+      } catch (err) {
+        const errorCode = (err as Error).message.match(/\d+/)!.toString();
 
-  const [errors, setErrors] = useState({ 1: false, 2: false });
+        setError(errorCode);
 
-  useEffect(() => {
-    document.addEventListener("keydown", onKeydown);
-
-    function onKeydown({ key }: { key: string }) {
-      if (key === "1" || key === "2") {
-        setErrors((state) => ({ ...state, [key]: !state[key] }));
+        console.log(err);
       }
-    }
-
-    return () => document.removeEventListener("keydown", onKeydown);
-  }, []);
-
-  // --------------------------------------------------------------------------
+    },
+  });
 
   const getError = (name: keyof typeof formik.values) =>
     formik.touched[name] ? formik.errors[name] : undefined;
 
   return (
-    <RegisterContainer>
-      <ErrorContainer>
-        <Error visible={errors[1]}>
-          Пользователь с таким email уже существует.
-        </Error>
-
-        <Error visible={errors[2]}>
-          При регистрации пользователя произошла ошибка.
-        </Error>
-      </ErrorContainer>
+    <RegisterContainer onSubmit={formik.handleSubmit}>
       <FormWithoutButton>
         <Logo />
         <Title>Добро пожаловать!</Title>
@@ -97,7 +88,15 @@ function Register() {
         </Inputs>
       </FormWithoutButton>
       <ButtonAndText>
-        <Button disabled={!formik.isValid}>Зарегистрироваться</Button>
+        {error === "409" ? (
+          <Error>Пользователь с таким email уже существует.</Error>
+        ) : null}
+        {error === "400" ? (
+          <Error>При регистрации пользователя произошла ошибка.</Error>
+        ) : null}
+        <Button type="submit" disabled={!formik.isValid}>
+          Зарегистрироваться
+        </Button>
         <Text>
           Уже зарегистрированы?<LinkLogin to="/signin">Войти</LinkLogin>
         </Text>

@@ -1,3 +1,5 @@
+import { MovieApiType } from "./types";
+
 export const BASE_URL = "https://api.nomoreparties.co/beatfilm-movies";
 
 export async function getMovies() {
@@ -9,5 +11,5 @@ export async function getMovies() {
 
   const movies = await data.json();
 
-  return movies;
+  return movies as MovieApiType[];
 }

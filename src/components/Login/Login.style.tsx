@@ -4,7 +4,6 @@ import {
   ButtonAndTextPattern,
   ButtonPattern,
   ContainerPattern,
-  ErrorContainerPattern,
   ErrorPattern,
   FormWithoutButtonPattern,
   InputsPattern,
@@ -15,14 +14,6 @@ import {
 
 export const LoginContainer = styled.form`
   ${ContainerPattern}
-`;
-
-export const ErrorContainer = styled.div`
-  ${ErrorContainerPattern}
-`;
-
-export const Error = styled.span<{ visible: boolean }>`
-  ${ErrorPattern}
 `;
 
 export const FormWithoutButton = styled.div`
@@ -39,6 +30,10 @@ export const Inputs = styled.div`
 
 export const ButtonAndText = styled.div`
   ${ButtonAndTextPattern}
+`;
+
+export const Error = styled.span`
+  ${ErrorPattern}
 `;
 
 export const Button = styled.button<{ disabled: boolean }>`
