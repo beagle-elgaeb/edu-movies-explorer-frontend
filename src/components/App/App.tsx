@@ -2,7 +2,6 @@ import produce from "immer";
 import { useEffect, useState } from "react";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import {
-  getFavoredMovies,
   getProfileData,
   postFavoredCards,
   removeFavoredCards,
@@ -19,6 +18,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import { Body } from "./App.style";
 import { Layout, LayoutWithoutHeader } from "./AppLayout";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { loadFavoredMovies } from "./utils";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
@@ -55,11 +55,17 @@ function App() {
 
       const apiLoadedMovies = res.map((item: MovieApiType) => {
         return {
+          country: item.country,
+          director: item.director,
+          duration: item.duration,
+          year: item.year,
+          description: item.description,
+          image: item.image.url,
+          thumbnail: item.image.formats.thumbnail.url,
+          trailerLink: item.trailerLink,
           id: item.id,
           nameRU: item.nameRU,
-          duration: item.duration,
-          trailerLink: item.trailerLink,
-          image: item.image.url,
+          nameEN: item.nameEN,
         };
       });
 
@@ -89,41 +95,21 @@ function App() {
       return;
     }
 
-    async function loadFavoredMovies() {
-      const savedMovies = localStorage.getItem("favoredMovies");
-
-      if (savedMovies) {
-        try {
-          return JSON.parse(savedMovies);
-        } catch {
-          localStorage.removeItem("favoredMovies");
-        }
-      }
-
+    async function run() {
       try {
         setError(false);
 
-        const res = await getFavoredMovies();
+        const loadedMovies = await loadFavoredMovies();
 
-        const apiLoadedMovies = res.map((item): MovieType => {
-          return {
-            id: item.movieId,
-            nameRU: item.nameRU,
-            duration: item.duration,
-            trailerLink: item.trailer,
-            image: item.image,
-          };
-        });
-
-        setFavoredMovies(apiLoadedMovies);
-        localStorage.setItem("favoredMovies", JSON.stringify(apiLoadedMovies));
+        setFavoredMovies(loadedMovies);
+        localStorage.setItem("favoredMovies", JSON.stringify(loadedMovies));
       } catch (err) {
         setError(true);
         console.log(err);
       }
     }
 
-    loadFavoredMovies();
+    run();
   }, [currentUser]);
 
   async function handleSaveMovie(movieId: number) {
@@ -142,7 +128,7 @@ function App() {
           movies!.slice(onSaveMovieId, 1);
         });
 
-        setFavoredMovies(newState);
+        await setFavoredMovies(newState);
 
         localStorage.setItem("favoredMovies", JSON.stringify(newState));
       } catch (err) {
@@ -153,24 +139,36 @@ function App() {
 
       try {
         await postFavoredCards({
+          country: movie.country,
+          director: movie.director,
+          duration: movie.duration,
+          year: movie.year,
+          description: movie.description,
+          image: `https://api.nomoreparties.co${movie.image}`,
+          trailer: movie.trailerLink,
+          thumbnail: `https://api.nomoreparties.co${movie.thumbnail}`,
           movieId: movie.id,
           nameRU: movie.nameRU,
-          duration: movie.duration,
-          trailer: movie.trailerLink,
-          image: movie.image,
+          nameEN: movie.nameEN,
         });
 
         const newState = produce(favoredMovies, (movies) => {
           movies?.push({
+            country: movie.country,
+            director: movie.director,
+            duration: movie.duration,
+            year: movie.year,
+            description: movie.description,
+            image: movie.image,
+            thumbnail: movie.thumbnail,
+            trailerLink: movie.trailerLink,
             id: movie.id,
             nameRU: movie.nameRU,
-            duration: movie.duration,
-            trailerLink: movie.trailerLink,
-            image: movie.image,
+            nameEN: movie.nameEN,
           });
         });
 
-        setFavoredMovies(newState);
+        await setFavoredMovies(newState);
 
         localStorage.setItem("favoredMovies", JSON.stringify(newState));
       } catch (err) {

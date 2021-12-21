@@ -84,17 +84,6 @@ function Login({
         {error === "401" ? (
           <Error>Вы ввели неправильный логин или пароль.</Error>
         ) : null}
-        {error === "400" ? (
-          <Error>
-            При авторизации произошла ошибка. Токен не передан или передан не в
-            том формате.
-          </Error>
-        ) : null}
-        {error === "400" ? (
-          <Error>
-            При авторизации произошла ошибка. Переданный токен некорректен.
-          </Error>
-        ) : null}
         <Button type="submit" disabled={!formik.isValid}>
           Войти
         </Button>

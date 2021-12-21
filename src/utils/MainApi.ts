@@ -50,6 +50,17 @@ export async function getProfileData() {
   return handleResult(user);
 }
 
+export async function editProfileData(userId: number) {
+  const user = await fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: jsonHeaders,
+    body: JSON.stringify(userId),
+    credentials: "include",
+  });
+
+  return handleResult(user);
+}
+
 export async function getFavoredMovies() {
   const data = await fetch(`${BASE_URL}/movies`, {
     credentials: "include",
