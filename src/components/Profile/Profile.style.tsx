@@ -129,17 +129,18 @@ export const Error = styled.span`
   ${ErrorPattern}
 `;
 
-export const Save = styled.button<{ disabled: boolean }>`
+export const Save = styled.button<{ disabledVariant: boolean }>`
   height: 45px;
   width: 410px;
-  background: ${({ disabled }) => (disabled ? "#f8f8f8" : "#3456f3")};
+  background: ${({ disabledVariant }) =>
+    disabledVariant ? "#f8f8f8" : "#3456f3"};
   border: none;
   border-radius: 3px;
   outline: none;
   font-size: 14px;
   line-height: 17px;
   font-weight: 500;
-  color: ${({ disabled }) => (disabled ? "#c2c2c2" : "#ffffff")};
+  color: ${({ disabledVariant }) => (disabledVariant ? "#c2c2c2" : "#ffffff")};
 
   @media (max-width: 500px) {
     width: 85%;
@@ -155,7 +156,6 @@ export const Edit = styled.button`
   outline: none;
   font-weight: 400;
   color: #ffffff;
-  margin: 0 0 16px;
 
   ${HoverLink}
 `;
@@ -166,6 +166,13 @@ export const Exit = styled.button`
   outline: none;
   font-weight: 500;
   color: #ee3465;
+  margin: 16px 0 0;
 
   ${HoverLink}
+`;
+
+export const Success = styled.span`
+  ${ErrorPattern}
+
+  color: #3456f3;
 `;

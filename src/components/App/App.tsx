@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
-import { Navigate, Outlet, Route, Routes, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { KeysTypes } from "../../utils/constants";
 import { getProfileData, logout } from "../../utils/MainApi";
 import { UserType } from "../../utils/types";
 import Login from "../Login/Login";
@@ -11,26 +13,22 @@ import Register from "../Register/Register";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import { Body } from "./App.style";
 import { Layout, LayoutWithoutHeader } from "./AppLayout";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useWhisMovies } from "./utils";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState<UserType>();
+  const [currentUser, setCurrentUser] = useState<UserType | undefined>(() => {
+    const auth = localStorage.getItem(KeysTypes.profile);
 
-  const navigate = useNavigate();
+    if (auth) {
+      return JSON.parse(auth);
+    } else {
+      return undefined;
+    }
+  });
 
   const { movies, favoredMovies, error, query, searchMovies, handleSaveMovie } =
     useWhisMovies(currentUser);
 
-  useEffect(() => {
-    const auth = localStorage.getItem("profile");
-
-    if (!auth) {
-      return;
-    }
-
-    setCurrentUser(JSON.parse(auth));
-  }, []);
 
   async function loadProfile() {
     try {
@@ -38,7 +36,7 @@ function App() {
 
       setCurrentUser(user);
 
-      localStorage.setItem("profile", JSON.stringify(user));
+      localStorage.setItem(KeysTypes.profile, JSON.stringify(user));
     } catch (err) {
       console.log(err);
     }
@@ -46,10 +44,10 @@ function App() {
 
   async function handleLogout() {
     await logout();
-    localStorage.removeItem("profile");
-    setCurrentUser(undefined);
+    localStorage.removeItem(KeysTypes.profile);
+    localStorage.removeItem(KeysTypes.favored);
 
-    navigate("/signin");
+    setCurrentUser(undefined);
   }
 
   return (
@@ -64,7 +62,7 @@ function App() {
                 path="movies"
                 element={
                   <Movies
-                    movies={movies ?? []}
+                    movies={movies}
                     favoredMovies={favoredMovies ?? []}
                     error={error}
                     load={!!query}
@@ -118,9 +116,9 @@ function App() {
 export default App;
 
 function AppAuth({ currentUser }: { currentUser: UserType | undefined }) {
-  return <>{currentUser ? <Outlet /> : <Navigate to="/signin" />}</>;
+  return <>{currentUser ? <Outlet /> : <Navigate to="/" />}</>;
 }
 
 function AppNotAuth({ currentUser }: { currentUser: UserType | undefined }) {
-  return <>{currentUser ? <Navigate to="/" /> : <Outlet />}</>;
+  return <>{currentUser ? <Navigate to="/movies" /> : <Outlet />}</>;
 }

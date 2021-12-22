@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CategoryTypes } from "../../utils/constants";
 import { MovieType } from "../../utils/types";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
@@ -39,6 +40,7 @@ function SavedMovies({
               movies={filterMovies}
               favoredMovies={movies!}
               handleSave={handleSave}
+              section={CategoryTypes.favored}
             />
           </>
         );

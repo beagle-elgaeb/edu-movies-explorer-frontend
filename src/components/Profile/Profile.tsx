@@ -17,6 +17,7 @@ import {
   Label,
   ProfileContainer,
   Save,
+  Success,
 } from "./Profile.style";
 
 function Profile({
@@ -30,6 +31,8 @@ function Profile({
 
   const [changed, setChanged] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -47,10 +50,14 @@ function Profile({
     }),
     onSubmit: async (values) => {
       try {
+        setInProgress(true);
+
         await editProfileData({ name: values.name, email: values.email });
         await loadProfile();
 
         setChanged(false);
+        setInProgress(false);
+        setSuccess(true);
       } catch (err) {
         const errorCode = (err as Error).message.match(/\d+/)!.toString();
 
@@ -63,6 +70,7 @@ function Profile({
 
   function handleChanged() {
     setChanged(true);
+    setSuccess(false);
   }
 
   return (
@@ -77,7 +85,7 @@ function Profile({
               placeholder="Имя"
               {...formik.getFieldProps("name")}
               autoComplete="off"
-              readOnly={!changed}
+              readOnly={!changed || inProgress}
             />
           </InputContainer>
           <InputContainer>
@@ -87,7 +95,7 @@ function Profile({
               placeholder="E-mail"
               {...formik.getFieldProps("email")}
               autoComplete="off"
-              readOnly={!changed}
+              readOnly={!changed || inProgress}
             />
           </InputContainer>
         </Inputs>
@@ -98,24 +106,34 @@ function Profile({
       {error === "400" ? (
         <Error>При обновлении профиля произошла ошибка.</Error>
       ) : null}
+      {success ? (
+        <Success>Данные пользователя успешно сохранены.</Success>
+      ) : null}
       {formik.errors.name ? <Error>{formik.errors.name}</Error> : null}
       {formik.errors.email ? <Error>{formik.errors.email}</Error> : null}
-      {changed ? (
-        <Buttons>
-          <Save type="submit" disabled={!formik.isValid}>
+      <Buttons>
+        {changed ? (
+          <Save
+            type="submit"
+            disabled={
+              !formik.isValid ||
+              inProgress ||
+              (formik.values.name === user.name &&
+                formik.values.email === user.email)
+            }
+            disabledVariant={!formik.isValid || inProgress}
+          >
             Сохранить
           </Save>
-        </Buttons>
-      ) : (
-        <Buttons>
+        ) : (
           <Edit type="button" onClick={handleChanged}>
             Редактировать
           </Edit>
-          <Exit type="button" onClick={handleLogout}>
-            Выйти из аккаунта
-          </Exit>
-        </Buttons>
-      )}
+        )}
+        <Exit type="button" onClick={handleLogout}>
+          Выйти из аккаунта
+        </Exit>
+      </Buttons>
     </ProfileContainer>
   );
 }

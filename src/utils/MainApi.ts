@@ -1,6 +1,6 @@
 import { MovieMainApiType } from "./types";
 
-export const BASE_URL = "https://api.eugenes.romey.ru";
+export const BASE_URL = "http://localhost:3000";
 
 const jsonHeaders = {
   "Content-Type": "application/json",

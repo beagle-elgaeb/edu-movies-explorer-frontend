@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { authorize } from "../../utils/MainApi";
 import InputAuth from "../InputAuth/InputAuth";
@@ -17,14 +16,9 @@ import {
   Title,
 } from "./Login.style";
 
-function Login({
-  loadProfile,
-}: {
-  loadProfile: () => void;
-}) {
-  let navigate = useNavigate();
-
+function Login({ loadProfile }: { loadProfile: () => void }) {
   const [error, setError] = useState("");
+  const [inProgress, setInProgress] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -42,10 +36,12 @@ function Login({
     }),
     onSubmit: async (values) => {
       try {
+        setInProgress(true);
+
         await authorize({ email: values.email, password: values.password });
         await loadProfile();
 
-        navigate("/movies");
+        setInProgress(false);
       } catch (err) {
         const errorCode = (err as Error).message.match(/\d+/)!.toString();
 
@@ -71,12 +67,14 @@ function Login({
             type="email"
             {...formik.getFieldProps("email")}
             errorText={getError("email")}
+            readOnly={inProgress}
           />
           <InputAuth
             label="Пароль"
             type="password"
             {...formik.getFieldProps("password")}
             errorText={getError("password")}
+            readOnly={inProgress}
           />
         </Inputs>
       </FormWithoutButton>
@@ -84,7 +82,7 @@ function Login({
         {error === "401" ? (
           <Error>Вы ввели неправильный логин или пароль.</Error>
         ) : null}
-        <Button type="submit" disabled={!formik.isValid}>
+        <Button type="submit" disabled={!formik.isValid || inProgress}>
           Войти
         </Button>
         <Text>

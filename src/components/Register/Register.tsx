@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { authorize, register } from "../../utils/MainApi";
 import InputAuth from "../InputAuth/InputAuth";
@@ -18,9 +17,8 @@ import {
 } from "./Register.style";
 
 function Register({ loadProfile }: { loadProfile: () => void }) {
-  let navigate = useNavigate();
-
   const [error, setError] = useState("");
+  const [inProgress, setInProgress] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -43,11 +41,13 @@ function Register({ loadProfile }: { loadProfile: () => void }) {
     }),
     onSubmit: async (values) => {
       try {
+        setInProgress(true);
+
         await register(values);
         await authorize({ email: values.email, password: values.password });
         await loadProfile();
 
-        navigate("/movies");
+        setInProgress(false);
       } catch (err) {
         const errorCode = (err as Error).message.match(/\d+/)!.toString();
 
@@ -78,12 +78,14 @@ function Register({ loadProfile }: { loadProfile: () => void }) {
             type="email"
             {...formik.getFieldProps("email")}
             errorText={getError("email")}
+            readOnly={inProgress}
           />
           <InputAuth
             label="Пароль"
             type="password"
             {...formik.getFieldProps("password")}
             errorText={getError("password")}
+            readOnly={inProgress}
           />
         </Inputs>
       </FormWithoutButton>
@@ -94,7 +96,7 @@ function Register({ loadProfile }: { loadProfile: () => void }) {
         {error === "400" ? (
           <Error>При регистрации пользователя произошла ошибка.</Error>
         ) : null}
-        <Button type="submit" disabled={!formik.isValid}>
+        <Button type="submit" disabled={!formik.isValid || inProgress}>
           Зарегистрироваться
         </Button>
         <Text>

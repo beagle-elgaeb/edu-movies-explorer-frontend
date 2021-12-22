@@ -1,5 +1,6 @@
 import produce from "immer";
 import { useEffect, useState } from "react";
+import { BaseUrl, KeysTypes } from "../../utils/constants";
 import {
   getFavoredMovies,
   postFavoredCards,
@@ -16,13 +17,13 @@ export function useWhisMovies(currentUser: UserType | undefined) {
   const [error, setError] = useState(false);
 
   async function loadMovies() {
-    const savedMovies = localStorage.getItem("movies");
+    const savedMovies = localStorage.getItem(KeysTypes.movies);
 
     if (savedMovies) {
       try {
         return JSON.parse(savedMovies);
       } catch {
-        localStorage.removeItem("movies");
+        localStorage.removeItem(KeysTypes.movies);
       }
     }
 
@@ -38,8 +39,8 @@ export function useWhisMovies(currentUser: UserType | undefined) {
           duration: item.duration,
           year: item.year,
           description: item.description,
-          image: item.image.url,
-          thumbnail: item.image.formats.thumbnail.url,
+          image: `${BaseUrl}${item.image.url}`,
+          thumbnail: `${BaseUrl}${item.image.formats.thumbnail.url}`,
           trailerLink: item.trailerLink,
           id: item.id,
           nameRU: item.nameRU,
@@ -47,7 +48,7 @@ export function useWhisMovies(currentUser: UserType | undefined) {
         };
       });
 
-      localStorage.setItem("movies", JSON.stringify(apiLoadedMovies));
+      localStorage.setItem(KeysTypes.movies, JSON.stringify(apiLoadedMovies));
 
       return apiLoadedMovies;
     } catch (err) {
@@ -57,13 +58,13 @@ export function useWhisMovies(currentUser: UserType | undefined) {
   }
 
   async function searchMovies(values: { searchQuery: string; short: boolean }) {
+    setQuery(values);
+
     if (!allMovies) {
       const loadedMovies = await loadMovies();
 
       setAllMovies(loadedMovies);
     }
-
-    setQuery(values);
   }
 
   const movies =
@@ -73,17 +74,19 @@ export function useWhisMovies(currentUser: UserType | undefined) {
         return false;
       }
 
-      return movie.nameRU.includes(query.searchQuery);
+      return movie.nameRU
+        .toLowerCase()
+        .includes(query.searchQuery.toLowerCase());
     });
 
   async function loadFavoredMovies() {
-    const savedMovies = localStorage.getItem("favoredMovies");
+    const savedMovies = localStorage.getItem(KeysTypes.favored);
 
     if (savedMovies) {
       try {
         return JSON.parse(savedMovies);
       } catch {
-        localStorage.removeItem("favoredMovies");
+        localStorage.removeItem(KeysTypes.favored);
       }
     }
 
@@ -118,7 +121,7 @@ export function useWhisMovies(currentUser: UserType | undefined) {
         const loadedMovies = await loadFavoredMovies();
 
         setFavoredMovies(loadedMovies);
-        localStorage.setItem("favoredMovies", JSON.stringify(loadedMovies));
+        localStorage.setItem(KeysTypes.favored, JSON.stringify(loadedMovies));
       } catch (err) {
         setError(true);
         console.log(err);
@@ -146,7 +149,7 @@ export function useWhisMovies(currentUser: UserType | undefined) {
 
         await setFavoredMovies(newState);
 
-        localStorage.setItem("favoredMovies", JSON.stringify(newState));
+        localStorage.setItem(KeysTypes.favored, JSON.stringify(newState));
       } catch (err) {
         console.log(err);
       }
@@ -160,9 +163,9 @@ export function useWhisMovies(currentUser: UserType | undefined) {
           duration: movie.duration,
           year: movie.year,
           description: movie.description,
-          image: `https://api.nomoreparties.co${movie.image}`,
+          image: movie.image,
           trailer: movie.trailerLink,
-          thumbnail: `https://api.nomoreparties.co${movie.thumbnail}`,
+          thumbnail: movie.thumbnail,
           movieId: movie.id,
           nameRU: movie.nameRU,
           nameEN: movie.nameEN,
@@ -186,7 +189,7 @@ export function useWhisMovies(currentUser: UserType | undefined) {
 
         await setFavoredMovies(newState);
 
-        localStorage.setItem("favoredMovies", JSON.stringify(newState));
+        localStorage.setItem(KeysTypes.favored, JSON.stringify(newState));
       } catch (err) {
         console.log(err);
       }
@@ -200,12 +203,5 @@ export function useWhisMovies(currentUser: UserType | undefined) {
     query,
     searchMovies,
     handleSaveMovie,
-  } as {
-    movies: MovieType[];
-    favoredMovies: MovieType[];
-    error: boolean;
-    query: { searchQuery: string; short: boolean };
-    searchMovies: (values: { searchQuery: string; short: boolean }) => void;
-    handleSaveMovie: (movieId: number) => void;
   };
 }

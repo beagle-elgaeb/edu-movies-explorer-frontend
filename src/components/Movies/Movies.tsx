@@ -1,6 +1,7 @@
 import useEvent from "@react-hook/event";
 import { useThrottle } from "@react-hook/throttle";
 import { useState } from "react";
+import { CategoryTypes } from "../../utils/constants";
 import {  MovieType } from "../../utils/types";
 import { getPagination } from "../../utils/utils";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
@@ -16,7 +17,7 @@ function Movies({
   searchMovies,
   handleSave,
 }: {
-  movies: MovieType[];
+  movies: MovieType[] | undefined;
   favoredMovies: MovieType[];
   error: boolean;
   load: boolean;
@@ -43,6 +44,7 @@ function Movies({
               movies={movies.slice(0, countRows * countInRow)}
               favoredMovies={favoredMovies}
               handleSave={handleSave}
+              section={CategoryTypes.movies}
             />
             {movies.length >= countRows * countInRow ? (
               <More onClick={() => setCountRows(countRows + plus)}>Ещё</More>
@@ -68,7 +70,7 @@ function Movies({
 
   return (
     <MoviesContainer>
-      <SearchForm searchMovies={searchMovies} />
+      <SearchForm searchMovies={searchMovies}  />
       {content}
     </MoviesContainer>
   );
