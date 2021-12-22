@@ -20,7 +20,7 @@ function Movies({
   favoredMovies: MovieType[];
   error: boolean;
   load: boolean;
-  searchMovies: (searchQuery: string) => void;
+  searchMovies: (values: { searchQuery: string; short: boolean }) => void;
   handleSave: (movieId: number) => void;
 }) {
   const [pagination, setPagination] = useThrottle(getPagination, 1);

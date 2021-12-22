@@ -22,20 +22,11 @@ import { loadFavoredMovies } from "./utils";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
-  const [movies, setMovies] = useState<MovieType[]>();
+  const [allMovies, setAllMovies] = useState<MovieType[]>();
   const [favoredMovies, setFavoredMovies] = useState<MovieType[]>();
-  const [load, setLoad] = useState(false);
+
+  const [query, setQuery] = useState<{ searchQuery: string; short: boolean }>();
   const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const auth = localStorage.getItem("profile");
-
-    if (!auth) {
-      return;
-    }
-
-    setCurrentUser(JSON.parse(auth));
-  }, []);
 
   async function loadMovies() {
     const savedMovies = localStorage.getItem("movies");
@@ -78,17 +69,25 @@ function App() {
     }
   }
 
-  async function searchMovies(searchQuery: string) {
-    setLoad(true);
+  async function searchMovies(values: { searchQuery: string; short: boolean }) {
+    if (!allMovies) {
+      const loadedMovies = await loadMovies();
 
-    const loadedMovies = await loadMovies();
+      setAllMovies(loadedMovies);
+    }
 
-    setMovies(
-      loadedMovies.filter((movie: MovieType) => {
-        return movie.nameRU.includes(searchQuery);
-      })
-    );
+    setQuery(values);
   }
+
+  const movies =
+    query &&
+    allMovies?.filter((movie: MovieType) => {
+      if (query.short && movie.duration >= 40) {
+        return false;
+      }
+
+      return movie.nameRU.includes(query.searchQuery);
+    });
 
   useEffect(() => {
     if (!currentUser) {
@@ -125,7 +124,7 @@ function App() {
           const onSaveMovie = movies!.find((movie) => movie.id === movieId);
           const onSaveMovieId = movies!.indexOf(onSaveMovie!);
 
-          movies!.slice(onSaveMovieId, 1);
+          movies!.splice(onSaveMovieId, 1);
         });
 
         await setFavoredMovies(newState);
@@ -177,6 +176,16 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    const auth = localStorage.getItem("profile");
+
+    if (!auth) {
+      return;
+    }
+
+    setCurrentUser(JSON.parse(auth));
+  }, []);
+
   async function loadProfile() {
     try {
       const user = await getProfileData();
@@ -206,7 +215,7 @@ function App() {
                     movies={movies ?? []}
                     favoredMovies={favoredMovies ?? []}
                     error={error}
-                    load={load}
+                    load={!!query}
                     searchMovies={searchMovies}
                     handleSave={handleSaveMovie}
                   />

@@ -1,6 +1,7 @@
 import { getFavoredMovies } from "../../utils/MainApi";
 import { MovieType } from "../../utils/types";
 
+
 export async function loadFavoredMovies() {
   const savedMovies = localStorage.getItem("favoredMovies");
 
@@ -11,6 +12,7 @@ export async function loadFavoredMovies() {
       localStorage.removeItem("favoredMovies");
     }
   }
+
   const res = await getFavoredMovies();
 
   return res.map((item): MovieType => {

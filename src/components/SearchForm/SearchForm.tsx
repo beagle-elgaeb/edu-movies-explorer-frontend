@@ -13,17 +13,18 @@ import {
 function SearchForm({
   searchMovies,
 }: {
-  searchMovies: (searchQuery: string) => void;
+  searchMovies: (values: { searchQuery: string; short: boolean }) => void;
 }) {
   const formik = useFormik({
     initialValues: {
       movie: "",
+      checkShort: false,
     },
     validationSchema: Yup.object({
       movie: Yup.string().required("Нужно ввести ключевое слово"),
     }),
     onSubmit: (values) => {
-      searchMovies(values.movie);
+      searchMovies({ searchQuery: values.movie, short: values.checkShort });
     },
   });
 
@@ -34,8 +35,6 @@ function SearchForm({
           type="text"
           placeholder="Фильм"
           {...formik.getFieldProps("movie")}
-          name="movie"
-          value={formik.values.movie}
           autoComplete="off"
         />
         {formik.touched.movie && formik.errors.movie ? (
@@ -46,7 +45,7 @@ function SearchForm({
           <ButtonIcon></ButtonIcon>
         </Button>
       </InputContainer>
-      <FilterCheckbox />
+      <FilterCheckbox {...formik.getFieldProps("checkShort")} />
     </SearchFormContainer>
   );
 }

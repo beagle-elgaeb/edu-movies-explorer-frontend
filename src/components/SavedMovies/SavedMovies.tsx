@@ -14,26 +14,23 @@ function SavedMovies({
   error: boolean;
   handleSave: (movieId: number) => void;
 }) {
-  const [filterMovies, setFilterMovies] = useState<MovieType[]>();
-  const [load, setLoad] = useState(false);
+  const [query, setQuery] = useState<{ searchQuery: string; short: boolean }>();
 
-  function searchMovies(searchQuery: string) {
-    setLoad(true);
-
-    if (!movies) {
-      return;
-    }
-
-    setFilterMovies(
-      movies.filter((movie: MovieType) => {
-        return movie.nameRU.includes(searchQuery);
-      })
-    );
+  function searchMovies(values: { searchQuery: string; short: boolean }) {
+    setQuery(values);
   }
 
   let content;
 
-  if (load) {
+  if (query) {
+    const filterMovies = movies.filter((movie: MovieType) => {
+      if (query.short && movie.duration >= 40) {
+        return false;
+      }
+
+      return movie.nameRU.includes(query.searchQuery);
+    });
+
     if (filterMovies) {
       if (filterMovies.length) {
         content = (
