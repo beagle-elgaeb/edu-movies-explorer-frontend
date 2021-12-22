@@ -44,6 +44,8 @@ export type LinkType = {
   text: string;
 };
 
-export type User = {
+export type UserType = {
+  email: string;
   name: string;
+  _id: string;
 };

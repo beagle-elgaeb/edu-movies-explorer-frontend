@@ -1,6 +1,6 @@
 import { MovieMainApiType } from "./types";
 
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://api.eugenes.romey.ru";
 
 const jsonHeaders = {
   "Content-Type": "application/json",
@@ -42,6 +42,16 @@ export async function authorize({
   return handleResult(user);
 }
 
+export async function logout() {
+  const user = await fetch(`${BASE_URL}/signout`, {
+    method: "POST",
+    headers: jsonHeaders,
+    credentials: "include",
+  });
+
+  return handleResult(user);
+}
+
 export async function getProfileData() {
   const user = await fetch(`${BASE_URL}/users/me`, {
     credentials: "include",
@@ -50,11 +60,17 @@ export async function getProfileData() {
   return handleResult(user);
 }
 
-export async function editProfileData(userId: number) {
+export async function editProfileData({
+  name,
+  email,
+}: {
+  name: string;
+  email: string;
+}) {
   const user = await fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: jsonHeaders,
-    body: JSON.stringify(userId),
+    body: JSON.stringify({ name, email }),
     credentials: "include",
   });
 

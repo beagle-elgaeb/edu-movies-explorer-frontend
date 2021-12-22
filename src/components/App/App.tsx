@@ -1,13 +1,7 @@
-import produce from "immer";
 import { useEffect, useState } from "react";
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import {
-  getProfileData,
-  postFavoredCards,
-  removeFavoredCards,
-} from "../../utils/MainApi";
-import { getMovies } from "../../utils/MoviesApi";
-import { MovieApiType, MovieType, User } from "../../utils/types";
+import { Navigate, Outlet, Route, Routes, useNavigate } from "react-router-dom";
+import { getProfileData, logout } from "../../utils/MainApi";
+import { UserType } from "../../utils/types";
 import Login from "../Login/Login";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -18,163 +12,15 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import { Body } from "./App.style";
 import { Layout, LayoutWithoutHeader } from "./AppLayout";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { loadFavoredMovies } from "./utils";
+import { useWhisMovies } from "./utils";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
-  const [allMovies, setAllMovies] = useState<MovieType[]>();
-  const [favoredMovies, setFavoredMovies] = useState<MovieType[]>();
+  const [currentUser, setCurrentUser] = useState<UserType>();
 
-  const [query, setQuery] = useState<{ searchQuery: string; short: boolean }>();
-  const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
-  async function loadMovies() {
-    const savedMovies = localStorage.getItem("movies");
-
-    if (savedMovies) {
-      try {
-        return JSON.parse(savedMovies);
-      } catch {
-        localStorage.removeItem("movies");
-      }
-    }
-
-    try {
-      setError(false);
-
-      const res = await getMovies();
-
-      const apiLoadedMovies = res.map((item: MovieApiType) => {
-        return {
-          country: item.country,
-          director: item.director,
-          duration: item.duration,
-          year: item.year,
-          description: item.description,
-          image: item.image.url,
-          thumbnail: item.image.formats.thumbnail.url,
-          trailerLink: item.trailerLink,
-          id: item.id,
-          nameRU: item.nameRU,
-          nameEN: item.nameEN,
-        };
-      });
-
-      localStorage.setItem("movies", JSON.stringify(apiLoadedMovies));
-
-      return apiLoadedMovies;
-    } catch (err) {
-      setError(true);
-      console.log(err);
-    }
-  }
-
-  async function searchMovies(values: { searchQuery: string; short: boolean }) {
-    if (!allMovies) {
-      const loadedMovies = await loadMovies();
-
-      setAllMovies(loadedMovies);
-    }
-
-    setQuery(values);
-  }
-
-  const movies =
-    query &&
-    allMovies?.filter((movie: MovieType) => {
-      if (query.short && movie.duration >= 40) {
-        return false;
-      }
-
-      return movie.nameRU.includes(query.searchQuery);
-    });
-
-  useEffect(() => {
-    if (!currentUser) {
-      return;
-    }
-
-    async function run() {
-      try {
-        setError(false);
-
-        const loadedMovies = await loadFavoredMovies();
-
-        setFavoredMovies(loadedMovies);
-        localStorage.setItem("favoredMovies", JSON.stringify(loadedMovies));
-      } catch (err) {
-        setError(true);
-        console.log(err);
-      }
-    }
-
-    run();
-  }, [currentUser]);
-
-  async function handleSaveMovie(movieId: number) {
-    const favoredMovie = favoredMovies?.find(
-      (favoredMovie) => favoredMovie.id === movieId
-    );
-
-    if (favoredMovie) {
-      try {
-        await removeFavoredCards(movieId);
-
-        const newState = produce(favoredMovies, (movies) => {
-          const onSaveMovie = movies!.find((movie) => movie.id === movieId);
-          const onSaveMovieId = movies!.indexOf(onSaveMovie!);
-
-          movies!.splice(onSaveMovieId, 1);
-        });
-
-        await setFavoredMovies(newState);
-
-        localStorage.setItem("favoredMovies", JSON.stringify(newState));
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      const movie = movies?.find((movie) => movie.id === movieId)!;
-
-      try {
-        await postFavoredCards({
-          country: movie.country,
-          director: movie.director,
-          duration: movie.duration,
-          year: movie.year,
-          description: movie.description,
-          image: `https://api.nomoreparties.co${movie.image}`,
-          trailer: movie.trailerLink,
-          thumbnail: `https://api.nomoreparties.co${movie.thumbnail}`,
-          movieId: movie.id,
-          nameRU: movie.nameRU,
-          nameEN: movie.nameEN,
-        });
-
-        const newState = produce(favoredMovies, (movies) => {
-          movies?.push({
-            country: movie.country,
-            director: movie.director,
-            duration: movie.duration,
-            year: movie.year,
-            description: movie.description,
-            image: movie.image,
-            thumbnail: movie.thumbnail,
-            trailerLink: movie.trailerLink,
-            id: movie.id,
-            nameRU: movie.nameRU,
-            nameEN: movie.nameEN,
-          });
-        });
-
-        await setFavoredMovies(newState);
-
-        localStorage.setItem("favoredMovies", JSON.stringify(newState));
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  }
+  const { movies, favoredMovies, error, query, searchMovies, handleSaveMovie } =
+    useWhisMovies(currentUser);
 
   useEffect(() => {
     const auth = localStorage.getItem("profile");
@@ -198,7 +44,13 @@ function App() {
     }
   }
 
-  //Говняное говно
+  async function handleLogout() {
+    await logout();
+    localStorage.removeItem("profile");
+    setCurrentUser(undefined);
+
+    navigate("/signin");
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -231,7 +83,15 @@ function App() {
                   />
                 }
               />
-              <Route path="profile" element={<Profile />} />
+              <Route
+                path="profile"
+                element={
+                  <Profile
+                    loadProfile={loadProfile}
+                    handleLogout={handleLogout}
+                  />
+                }
+              />
             </Route>
           </Route>
 
@@ -257,10 +117,10 @@ function App() {
 
 export default App;
 
-function AppAuth({ currentUser }: { currentUser: User | undefined }) {
+function AppAuth({ currentUser }: { currentUser: UserType | undefined }) {
   return <>{currentUser ? <Outlet /> : <Navigate to="/signin" />}</>;
 }
 
-function AppNotAuth({ currentUser }: { currentUser: User | undefined }) {
+function AppNotAuth({ currentUser }: { currentUser: UserType | undefined }) {
   return <>{currentUser ? <Navigate to="/" /> : <Outlet />}</>;
 }
