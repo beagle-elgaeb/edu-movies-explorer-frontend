@@ -32,7 +32,7 @@
 - [бэкенд](https://github.com/beagle-elgaeb/edu-movies-explorer-api);
 - домен для фронтенда: [eugenes.romey.ru](https://eugenes.romey.ru).
 - домен для бэкенда: [api.eugenes.romey.ru](https://api.eugenes.romey.ru).
-- публичный IP: `51.250.4.102`.
+- публичный IP: `62.84.112.124`.
 
 ### Функциональность проекта
 
