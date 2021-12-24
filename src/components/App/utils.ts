@@ -10,10 +10,23 @@ import { getMovies } from "../../utils/MoviesApi";
 import { MovieApiType, MovieType, UserType } from "../../utils/types";
 
 export function useWhisMovies(currentUser: UserType | undefined) {
+  const [query, setQuery] = useState<{ searchQuery: string; short: boolean }>(
+    () => {
+      const data = localStorage.getItem(KeysTypes.moviesSearch);
+
+      return data ? JSON.parse(data).query : undefined;
+    }
+  );
+
+  const [movies, setMovies] = useState<MovieType[]>(() => {
+    const data = localStorage.getItem(KeysTypes.moviesSearch);
+
+    return data ? JSON.parse(data).filtered : undefined;
+  });
+
   const [allMovies, setAllMovies] = useState<MovieType[]>();
   const [favoredMovies, setFavoredMovies] = useState<MovieType[]>();
 
-  const [query, setQuery] = useState<{ searchQuery: string; short: boolean }>();
   const [error, setError] = useState(false);
 
   async function loadMovies() {
@@ -60,24 +73,33 @@ export function useWhisMovies(currentUser: UserType | undefined) {
   async function searchMovies(values: { searchQuery: string; short: boolean }) {
     setQuery(values);
 
+    let _allMovies = allMovies;
+
     if (!allMovies) {
       const loadedMovies = await loadMovies();
 
       setAllMovies(loadedMovies);
-    }
-  }
 
-  const movies =
-    query &&
-    allMovies?.filter((movie: MovieType) => {
-      if (query.short && movie.duration >= 40) {
+      _allMovies = loadedMovies;
+    }
+
+    const filtered = _allMovies!.filter((movie: MovieType) => {
+      if (values.short && movie.duration >= 40) {
         return false;
       }
 
       return movie.nameRU
         .toLowerCase()
-        .includes(query.searchQuery.toLowerCase());
+        .includes(values.searchQuery.toLowerCase());
     });
+
+    setMovies(filtered);
+
+    localStorage.setItem(
+      KeysTypes.moviesSearch,
+      JSON.stringify({ query: values, filtered })
+    );
+  }
 
   async function loadFavoredMovies() {
     const savedMovies = localStorage.getItem(KeysTypes.favored);

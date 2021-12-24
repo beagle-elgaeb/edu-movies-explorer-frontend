@@ -29,7 +29,6 @@ function App() {
   const { movies, favoredMovies, error, query, searchMovies, handleSaveMovie } =
     useWhisMovies(currentUser);
 
-
   async function loadProfile() {
     try {
       const user = await getProfileData();
@@ -46,6 +45,7 @@ function App() {
     await logout();
     localStorage.removeItem(KeysTypes.profile);
     localStorage.removeItem(KeysTypes.favored);
+    localStorage.removeItem(KeysTypes.favoredSearch);
 
     setCurrentUser(undefined);
   }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CategoryTypes } from "../../utils/constants";
+import { CategoryTypes, KeysTypes } from "../../utils/constants";
 import { MovieType } from "../../utils/types";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
@@ -15,23 +15,44 @@ function SavedMovies({
   error: boolean;
   handleSave: (movieId: number) => void;
 }) {
-  const [query, setQuery] = useState<{ searchQuery: string; short: boolean }>();
+  const [query, setQuery] = useState<{ searchQuery: string; short: boolean }>(
+    () => {
+      const data = localStorage.getItem(KeysTypes.favoredSearch);
+
+      return data ? JSON.parse(data).query : undefined;
+    }
+  );
+
+  const [filterMovies, setFilterMovies] = useState<MovieType[]>(() => {
+    const data = localStorage.getItem(KeysTypes.favoredSearch);
+
+    return data ? JSON.parse(data).filtered : undefined;
+  });
 
   function searchMovies(values: { searchQuery: string; short: boolean }) {
     setQuery(values);
+
+    const filtered = movies.filter((movie: MovieType) => {
+      if (values.short && movie.duration >= 40) {
+        return false;
+      }
+
+      return movie.nameRU
+        .toLowerCase()
+        .includes(values.searchQuery.toLowerCase());
+    });
+
+    setFilterMovies(filtered);
+    
+    localStorage.setItem(
+      KeysTypes.favoredSearch,
+      JSON.stringify({ query: values, filtered })
+    );
   }
 
   let content;
 
   if (query) {
-    const filterMovies = movies.filter((movie: MovieType) => {
-      if (query.short && movie.duration >= 40) {
-        return false;
-      }
-
-      return movie.nameRU.includes(query.searchQuery);
-    });
-
     if (filterMovies) {
       if (filterMovies.length) {
         content = (
