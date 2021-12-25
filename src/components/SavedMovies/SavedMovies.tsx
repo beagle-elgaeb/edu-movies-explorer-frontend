@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { CategoryTypes, KeysTypes } from "../../utils/constants";
+import { CategoryTypes, durationShortFilm, KeysTypes, Timer } from "../../utils/constants";
 import { MovieType } from "../../utils/types";
+import { sleep } from "../../utils/utils";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import SearchForm from "../SearchForm/SearchForm";
@@ -15,25 +16,30 @@ function SavedMovies({
   error: boolean;
   handleSave: (movieId: number) => void;
 }) {
-  const [query, setQuery] = useState<{ searchQuery: string; short: boolean }>(
+  const [query, setQuery] = useState<
+    { searchQuery: string; short: boolean } | undefined
+  >(() => {
+    const data = localStorage.getItem(KeysTypes.favoredSearch);
+
+    return data ? JSON.parse(data).query : undefined;
+  });
+
+  const [filterMovies, setFilterMovies] = useState<MovieType[] | undefined>(
     () => {
       const data = localStorage.getItem(KeysTypes.favoredSearch);
 
-      return data ? JSON.parse(data).query : undefined;
+      return data ? JSON.parse(data).filtered : undefined;
     }
   );
 
-  const [filterMovies, setFilterMovies] = useState<MovieType[]>(() => {
-    const data = localStorage.getItem(KeysTypes.favoredSearch);
-
-    return data ? JSON.parse(data).filtered : undefined;
-  });
-
-  function searchMovies(values: { searchQuery: string; short: boolean }) {
+  async function searchMovies(values: { searchQuery: string; short: boolean }) {
     setQuery(values);
+    setFilterMovies(undefined);
+
+    await sleep(Timer.preloader);
 
     const filtered = movies.filter((movie: MovieType) => {
-      if (values.short && movie.duration >= 40) {
+      if (values.short && movie.duration >= durationShortFilm) {
         return false;
       }
 
@@ -43,7 +49,7 @@ function SavedMovies({
     });
 
     setFilterMovies(filtered);
-    
+
     localStorage.setItem(
       KeysTypes.favoredSearch,
       JSON.stringify({ query: values, filtered })

@@ -26,8 +26,8 @@ function Movies({
 }) {
   const [pagination, setPagination] = useThrottle(getPagination, 1);
   const { startRows, countInRow, plus } = pagination;
-  const [clickCount, setCountRows] = useState(0);
-  const countRows = startRows + clickCount;
+  const [countPlusRows, setCountPlusRows] = useState(0);
+  const countRows = startRows + countPlusRows;
 
   useEvent(window, "resize", () => {
     setPagination(getPagination());
@@ -47,7 +47,7 @@ function Movies({
               section={CategoryTypes.movies}
             />
             {movies.length >= countRows * countInRow ? (
-              <More onClick={() => setCountRows(countRows + plus)}>Ещё</More>
+              <More onClick={() => setCountPlusRows(countPlusRows + plus)}>Ещё</More>
             ) : null}
           </>
         );

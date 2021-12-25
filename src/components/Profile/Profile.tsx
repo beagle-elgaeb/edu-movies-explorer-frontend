@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import * as Yup from "yup";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { Timer } from "../../utils/constants";
 import { editProfileData } from "../../utils/MainApi";
 import {
   Buttons,
@@ -58,6 +59,9 @@ function Profile({
         setChanged(false);
         setInProgress(false);
         setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, Timer.success);
       } catch (err) {
         const errorCode = (err as Error).message.match(/\d+/)!.toString();
 

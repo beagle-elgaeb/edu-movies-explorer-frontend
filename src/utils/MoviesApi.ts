@@ -1,9 +1,8 @@
+import { BaseUrlBeatfilmApi } from "./constants";
 import { MovieApiType } from "./types";
 
-export const BASE_URL = "https://api.nomoreparties.co/beatfilm-movies";
-
 export async function getMovies() {
-  const data = await fetch(`${BASE_URL}/`);
+  const data = await fetch(`${BaseUrlBeatfilmApi}/`);
 
   if (!data.ok) {
     throw new Error(`Статуc ошибки: ${data.status}`);

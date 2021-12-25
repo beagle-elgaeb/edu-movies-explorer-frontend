@@ -1,6 +1,11 @@
 import produce from "immer";
 import { useEffect, useState } from "react";
-import { BaseUrl, KeysTypes } from "../../utils/constants";
+import {
+  BaseUrl,
+  durationShortFilm,
+  KeysTypes,
+  Timer,
+} from "../../utils/constants";
 import {
   getFavoredMovies,
   postFavoredCards,
@@ -8,17 +13,18 @@ import {
 } from "../../utils/MainApi";
 import { getMovies } from "../../utils/MoviesApi";
 import { MovieApiType, MovieType, UserType } from "../../utils/types";
+import { sleep } from "../../utils/utils";
 
 export function useWhisMovies(currentUser: UserType | undefined) {
-  const [query, setQuery] = useState<{ searchQuery: string; short: boolean }>(
-    () => {
-      const data = localStorage.getItem(KeysTypes.moviesSearch);
+  const [query, setQuery] = useState<
+    { searchQuery: string; short: boolean } | undefined
+  >(() => {
+    const data = localStorage.getItem(KeysTypes.moviesSearch);
 
-      return data ? JSON.parse(data).query : undefined;
-    }
-  );
+    return data ? JSON.parse(data).query : undefined;
+  });
 
-  const [movies, setMovies] = useState<MovieType[]>(() => {
+  const [movies, setMovies] = useState<MovieType[] | undefined>(() => {
     const data = localStorage.getItem(KeysTypes.moviesSearch);
 
     return data ? JSON.parse(data).filtered : undefined;
@@ -72,6 +78,9 @@ export function useWhisMovies(currentUser: UserType | undefined) {
 
   async function searchMovies(values: { searchQuery: string; short: boolean }) {
     setQuery(values);
+    setMovies(undefined);
+
+    await sleep(Timer.preloader);
 
     let _allMovies = allMovies;
 
@@ -84,7 +93,7 @@ export function useWhisMovies(currentUser: UserType | undefined) {
     }
 
     const filtered = _allMovies!.filter((movie: MovieType) => {
-      if (values.short && movie.duration >= 40) {
+      if (values.short && movie.duration >= durationShortFilm) {
         return false;
       }
 

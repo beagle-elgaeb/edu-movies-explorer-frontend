@@ -1,8 +1,5 @@
+import { BaseUrlMainApi } from "./constants";
 import { MovieMainApiType } from "./types";
-
-// export const BASE_URL = "https://api.eugenes.romey.ru";
-export const BASE_URL = "http://localhost:3000"
-
 
 const jsonHeaders = {
   "Content-Type": "application/json",
@@ -17,7 +14,7 @@ export async function register({
   email: string;
   password: string;
 }) {
-  const user = await fetch(`${BASE_URL}/signup`, {
+  const user = await fetch(`${BaseUrlMainApi}/signup`, {
     method: "POST",
     headers: jsonHeaders,
     body: JSON.stringify({ name, email, password }),
@@ -34,7 +31,7 @@ export async function authorize({
   email: string;
   password: string;
 }) {
-  const user = await fetch(`${BASE_URL}/signin`, {
+  const user = await fetch(`${BaseUrlMainApi}/signin`, {
     method: "POST",
     headers: jsonHeaders,
     body: JSON.stringify({ email, password }),
@@ -45,7 +42,7 @@ export async function authorize({
 }
 
 export async function logout() {
-  const user = await fetch(`${BASE_URL}/signout`, {
+  const user = await fetch(`${BaseUrlMainApi}/signout`, {
     method: "POST",
     headers: jsonHeaders,
     credentials: "include",
@@ -55,7 +52,7 @@ export async function logout() {
 }
 
 export async function getProfileData() {
-  const user = await fetch(`${BASE_URL}/users/me`, {
+  const user = await fetch(`${BaseUrlMainApi}/users/me`, {
     credentials: "include",
   });
 
@@ -69,7 +66,7 @@ export async function editProfileData({
   name: string;
   email: string;
 }) {
-  const user = await fetch(`${BASE_URL}/users/me`, {
+  const user = await fetch(`${BaseUrlMainApi}/users/me`, {
     method: "PATCH",
     headers: jsonHeaders,
     body: JSON.stringify({ name, email }),
@@ -80,7 +77,7 @@ export async function editProfileData({
 }
 
 export async function getFavoredMovies() {
-  const data = await fetch(`${BASE_URL}/movies`, {
+  const data = await fetch(`${BaseUrlMainApi}/movies`, {
     credentials: "include",
   });
 
@@ -94,7 +91,7 @@ export async function getFavoredMovies() {
 }
 
 export async function postFavoredCards(movie: MovieMainApiType) {
-  const data = await fetch(`${BASE_URL}/movies`, {
+  const data = await fetch(`${BaseUrlMainApi}/movies`, {
     method: "POST",
     headers: jsonHeaders,
     credentials: "include",
@@ -105,7 +102,7 @@ export async function postFavoredCards(movie: MovieMainApiType) {
 }
 
 export async function removeFavoredCards(id: number) {
-  const data = await fetch(`${BASE_URL}/movies/${id}`, {
+  const data = await fetch(`${BaseUrlMainApi}/movies/${id}`, {
     method: "DELETE",
     credentials: "include",
   });
