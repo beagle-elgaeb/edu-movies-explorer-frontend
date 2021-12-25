@@ -22,40 +22,6 @@ export const ContainerPattern = css`
   }
 `;
 
-export const ErrorContainerPattern = css`
-  width: 60%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin: 50px 0 0 0;
-
-  @media (max-width: 800px) {
-    margin: 60px 0 0 0;
-  }
-
-  @media (max-width: 500px) {
-    width: 70%;
-    margin: 20px 0 0 0;
-  }
-`;
-
-export const ErrorPattern = ({ visible }: { visible: boolean }) => css`
-  width: 100%;
-  display: ${visible ? "block" : "none"};
-  background: #ffffff15;
-  border-radius: 4px;
-  font-size: 10px;
-  line-height: 12px;
-  font-weight: 400;
-  text-align: end;
-  color: #ee3465;
-  margin: 0 0 10px 0;
-  padding: 0 10px;
-`;
-
 export const FormWithoutButtonPattern = css`
   width: 100%;
   display: flex;
@@ -96,6 +62,17 @@ export const ButtonAndTextPattern = css`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const ErrorPattern = () => css`
+  width: 100%;
+  font-size: 10px;
+  line-height: 13px;
+  font-weight: 400;
+  text-align: center;
+  color: #ff004c;
+  margin: 0 0 20px 0;
+  padding: 0;
 `;
 
 export const ButtonPattern = ({ disabled }: { disabled: boolean }) => css`

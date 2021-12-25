@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import MenuPopup from "../MenuPopup/MenuPopup";
 
-export function Layout() {
+export function Layout({ isLogined }: { isLogined: boolean }) {
   const [menuPopupOpen, setMenuPopupOpen] = useState(false);
 
   function closeAllPopups() {
@@ -29,7 +29,7 @@ export function Layout() {
         onKeydown={onKeydown}
       />
       <div>
-        <Header onMenuClick={handleMenuClick} />
+        <Header onMenuClick={handleMenuClick} isLogined={isLogined} />
         <main>
           <Outlet />
         </main>

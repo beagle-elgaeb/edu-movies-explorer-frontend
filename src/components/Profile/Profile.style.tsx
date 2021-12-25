@@ -1,4 +1,5 @@
 import styled from "@emotion/styled/macro";
+import { ErrorPattern } from "../Auth.style";
 import { BlockPattern, HoverButton, HoverLink } from "../Blocks.style";
 
 export const ProfileContainer = styled.form`
@@ -124,34 +125,22 @@ export const Buttons = styled.div`
   }
 `;
 
-export const Errors = styled.div`
-  position: absolute;
-  top: -33px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const Error = styled.span`
+  ${ErrorPattern}
 `;
 
-export const Error = styled.span<{ visible: boolean }>`
-  display: ${({ visible }) => (visible ? "inline" : "none")};
-  font-size: 11px;
-  line-height: 13px;
-  font-weight: 400;
-  text-align: center;
-  color: #ff004c;
-`;
-
-export const Save = styled.button<{ erroneous: boolean }>`
+export const Save = styled.button<{ disabledVariant: boolean }>`
   height: 45px;
   width: 410px;
-  background: ${({ erroneous }) => (erroneous ? "#f8f8f8" : "#3456f3")};
+  background: ${({ disabledVariant }) =>
+    disabledVariant ? "#f8f8f8" : "#3456f3"};
   border: none;
   border-radius: 3px;
   outline: none;
   font-size: 14px;
   line-height: 17px;
   font-weight: 500;
-  color: ${({ erroneous }) => (erroneous ? "#c2c2c2" : "#ffffff")};
+  color: ${({ disabledVariant }) => (disabledVariant ? "#c2c2c2" : "#ffffff")};
 
   @media (max-width: 500px) {
     width: 85%;
@@ -167,7 +156,6 @@ export const Edit = styled.button`
   outline: none;
   font-weight: 400;
   color: #ffffff;
-  margin: 0 0 16px;
 
   ${HoverLink}
 `;
@@ -178,6 +166,13 @@ export const Exit = styled.button`
   outline: none;
   font-weight: 500;
   color: #ee3465;
+  margin: 16px 0 0;
 
   ${HoverLink}
+`;
+
+export const Success = styled.span`
+  ${ErrorPattern}
+
+  color: #3456f3;
 `;

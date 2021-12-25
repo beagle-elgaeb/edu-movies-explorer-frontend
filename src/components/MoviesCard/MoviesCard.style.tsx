@@ -1,4 +1,6 @@
 import styled from "@emotion/styled/macro";
+import { HoverButton } from "../Blocks.style";
+import deleteIcon from "../../images/icon-delete.svg";
 
 export const MoviesCardContainer = styled.li`
   width: 100%;
@@ -14,10 +16,10 @@ export const MoviesCardContainer = styled.li`
   }
 `;
 
-export const FrameFromMovie = styled.div<{ frame: string }>`
+export const FrameFromMovie = styled.a<{ image: string }>`
   height: 151px;
   width: 100%;
-  background: url(${({ frame }) => frame});
+  background: url(${({ image }) => image});
   background-size: cover;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -31,7 +33,7 @@ export const FrameFromMovie = styled.div<{ frame: string }>`
   }
 `;
 
-export const NameMovieAndCheck = styled.div`
+export const NameMovieAndCheckOrDel = styled.div`
   width: 92%;
   display: flex;
   justify-content: space-between;
@@ -104,4 +106,18 @@ export const Check = styled.div`
     transition: 0.2s;
     content: "";
   }
+`;
+
+export const DeleteButton = styled.button`
+  height: 16px;
+  width: 16px;
+  background: transparent;
+  background: url(${deleteIcon});
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  outline: none;
+
+  ${HoverButton}
 `;

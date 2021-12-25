@@ -34,6 +34,14 @@ function Portfolio() {
         <LinkText>Одностраничное приложение</LinkText>
         <LinkIcon></LinkIcon>
       </EduWorkLink>
+      <EduWorkLink
+        href="https://beagle-elgaeb.github.io/pet-clculator-calories/"
+        alt-text="Минималистичный калькулятор калорий"
+        target="_blank"
+      >
+        <LinkText>Pet-проект</LinkText>
+        <LinkIcon></LinkIcon>
+      </EduWorkLink>
     </PortfolioContainer>
   );
 }

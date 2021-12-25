@@ -1,35 +1,97 @@
 import { useState } from "react";
-import { movies } from "../../utils/lists";
+import { CategoryTypes, durationShortFilm, KeysTypes, Timer } from "../../utils/constants";
+import { MovieType } from "../../utils/types";
+import { sleep } from "../../utils/utils";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader";
 import SearchForm from "../SearchForm/SearchForm";
 import { NotFound, SavedMoviesContainer } from "./SavedMovies.style";
 
-function SavedMovies() {
-  const savedMovies = movies.filter((movie) => movie.saved === true);
+function SavedMovies({
+  movies,
+  error,
+  handleSave,
+}: {
+  movies: MovieType[];
+  error: boolean;
+  handleSave: (movieId: number) => void;
+}) {
+  const [query, setQuery] = useState<
+    { searchQuery: string; short: boolean } | undefined
+  >(() => {
+    const data = localStorage.getItem(KeysTypes.favoredSearch);
 
-  // Временно, для наблюдения прелоадера --------------------------------------
-  // (нажатие на кнопку поиска меняет её на прелоадер на 3 секунды) -----------
+    return data ? JSON.parse(data).query : undefined;
+  });
 
-  const [search, setSearch] = useState(false);
+  const [filterMovies, setFilterMovies] = useState<MovieType[] | undefined>(
+    () => {
+      const data = localStorage.getItem(KeysTypes.favoredSearch);
 
-  function handleSearch() {
-    setSearch(true);
+      return data ? JSON.parse(data).filtered : undefined;
+    }
+  );
 
-    setTimeout(() => {
-      setSearch(false);
-    }, 3000);
+  async function searchMovies(values: { searchQuery: string; short: boolean }) {
+    setQuery(values);
+    setFilterMovies(undefined);
+
+    await sleep(Timer.preloader);
+
+    const filtered = movies.filter((movie: MovieType) => {
+      if (values.short && movie.duration >= durationShortFilm) {
+        return false;
+      }
+
+      return movie.nameRU
+        .toLowerCase()
+        .includes(values.searchQuery.toLowerCase());
+    });
+
+    setFilterMovies(filtered);
+
+    localStorage.setItem(
+      KeysTypes.favoredSearch,
+      JSON.stringify({ query: values, filtered })
+    );
   }
 
-  // --------------------------------------------------------------------------
+  let content;
+
+  if (query) {
+    if (filterMovies) {
+      if (filterMovies.length) {
+        content = (
+          <>
+            <MoviesCardList
+              movies={filterMovies}
+              favoredMovies={movies!}
+              handleSave={handleSave}
+              section={CategoryTypes.favored}
+            />
+          </>
+        );
+      } else {
+        content = <NotFound>Ничего не найдено</NotFound>;
+      }
+    } else {
+      if (error) {
+        content = (
+          <NotFound>
+            Во время запроса произошла ошибка. Возможно, проблема с соединением
+            или сервер недоступен. Подождите немного и попробуйте ещё раз
+          </NotFound>
+        );
+      } else {
+        content = <Preloader />;
+      }
+    }
+  }
 
   return (
     <SavedMoviesContainer>
-      <SearchForm search={search} handleSearch={handleSearch} />
-      {search ? (
-        <NotFound>Поиск не дал результатов...</NotFound>
-      ) : (
-        <MoviesCardList movies={savedMovies} />
-      )}
+      <SearchForm searchMovies={searchMovies} />
+      {content}
     </SavedMoviesContainer>
   );
 }
